@@ -1,0 +1,534 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos Bases */
+html,
+body {
+    height: 100%;
+    font-family: "Manrope", sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --max-width: 1200px;
+    --container-padding: 1rem;
+
+    --primary-color: #2E7D32;
+    --secondary-color: #5D4037;
+    --accent-color: #F57C00;
+    --background-color: #141414;
+    --white-color: #F5F5F0;
+    --black-color: #000000;
+    --grey-color: #808080;
+    --light-grey-color: #CCCCCC;
+    --mid-grey-color: #A9A9A9;
+    --darker-grey-color: #696969;
+    --hover-primary-color: #265529;
+    --hover-secondary-color: #4E342E;
+
+    --text-size-s: 0.8rem;
+    --text-size-m: 1rem;
+    --text-size-l: 1.2rem;
+    --text-size-xl: 1.5rem;
+    --text-size-xxl: 2rem;
+    --text-size-xxxl: 2.5rem;
+
+    --radius-img-global: 16px;
+    --radius-btn-global: 8px;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--white-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--light-grey-color);
+}
+
+span {
+    color: var(--accent-color);
+}
+
+
+/* Contenedor Base */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 10rem var(--container-padding);
+}
+
+/* Subtitulo */
+h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: var(--text-size-xxxl);
+    font-weight: 800;
+    color: var(--white-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Boton General */
+.btn-general {
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: var(--radius-btn-global);
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    font-size: var(--text-size-l);
+    margin-top: 5vh;
+}
+
+.btn-general:hover {
+    background-color: var(--hover-secondary-color);
+    color: var(--accent-color);
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    width: 100%;
+    padding: 1rem 2rem 0 2rem;
+    position: fixed;
+    z-index: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.navbar-item {
+    padding: 1.2rem 2rem;
+    gap: 2rem;
+    border-radius: 40px;
+    border: 1px solid #F5F5F030;
+    background: #F5F5F01A;
+    box-shadow: 2px 4px 10px 0px var(--black-color);
+    backdrop-filter: blur(2px);
+}
+
+.navbar-item:hover {
+    background: #F5F5F030;
+    color: var(--accent-color);
+    box-shadow: 2px 4px 10px 0px var(--accent-color);
+}
+
+.navbar-item a:hover {
+    color: var(--accent-color);
+}
+
+.nav-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-icon {
+    font-size: var(--text-size-xl);
+}
+
+/* HERO */
+
+.bg-main-container {
+    background-image: url(../imagenes/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 5rem;
+}
+
+.hero-container {
+    padding-top: 20rem;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    gap: 2rem;
+    margin: 0 auto;
+}
+
+.hero p {
+    font-size: var(--text-size-l);
+    color: var(--white-color);
+}
+
+/* SECCION: PRODUCTOS DESTACADOS */
+
+.productos-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 2rem;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+/* Card de productos*/
+.card {
+    display: flex;
+    flex-direction: column;
+    flex: calc(25% - 2rem);
+    height: 100%;
+    min-height: 400px;
+    justify-content: space-between;
+    border-radius: var(--radius-img-global);
+    box-shadow: 0px 0px 10px 0px var(--black-color);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card img {
+    max-width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-img-global) var(--radius-img-global) 0 0;
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+    color: var(--black-color);
+    background-color: var(--white-color);
+    border-radius: var(--radius-img-global);
+    margin-top: -1rem;
+    box-shadow: 0px 0px 10px 0px var(--black-color);
+}
+
+.card-text h3 {
+    font-size: var(--text-size-xl);
+    font-weight: 700;
+}
+
+
+/* Boton de Precio */
+.precio-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.precio-btn p {
+    font-size: var(--text-size-xl);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.precio-btn a {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    padding: 1rem;
+    border-radius: var(--radius-btn-global);
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.precio-btn a:hover {
+    background-color: var(--hover-primary-color);
+    color: var(--accent-color);
+}
+
+
+/* SECCION: CATEGORIAS */
+
+
+.grid-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.grid-categorias {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 2vw;
+    align-items: center;
+}
+
+.grid-item {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
+    color: var(--text-on-secondary);
+    font-size: var(--text-size-xl);
+    font-weight: 700;
+    border-radius: var(--radius-img-global);
+}
+
+
+/* Imagenes de las categorias */
+.grid-img1 {
+    background-image: url(../imagenes/Melena.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* SECCION: VIDEO INFORMATIVO */
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-attachment: fixed;
+}
+
+.video-background {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    width: auto;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    object-fit: cover;
+}
+
+.video-texto {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20vh;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    font-size: var(--text-size-xxl);
+    text-shadow: 0 2px 4px var(--black-color);
+    gap: 5vh;
+    z-index: -1;
+}
+
+/*BACKGROUND PARA EL RESTO DE LAS SECCIONES PARA EFECTO PARALLAX*/
+#quienes-somos,
+#envios,
+#contacto {
+    background-color: var(--background-color);
+}
+
+
+/* SECCION: ¿QUIENES SOMOS? */
+
+.quienes-container {
+    display: flex;
+    width: 100%;
+    align-items: space-between;
+    gap: 10rem;    
+}
+
+.quienes-texto {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-evenly;
+    font-size: var(--text-size-l);
+    gap: 1rem;
+}
+
+.quienes-img {
+    width: 60vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-img-global);
+}
+
+.quienes-container h2 {
+    justify-content: center;
+}
+
+
+/* SECCION: ENVIOS */
+.envios-container {
+    display: flex;
+    width: 100%;
+    height: 10VH;
+    justify-content: center;
+    align-items: center;
+}
+
+.envios-container p {
+    font-size: var(--text-size-l);
+}
+
+/* SECCION: CONTACTO */
+.contacto-container {
+    margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.contacto-container p {
+    font-size: var(--text-size-l);
+    padding: 2rem 0;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 75%;
+}
+
+.formulario-datos {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+
+}
+
+.formulario-datos div {
+    width: 100%;
+}
+
+.formulario input,
+.formulario textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border-radius: var(--radius-btn-global);
+    border: 1px solid var(--grey-color);
+    background-color: var(--white-color);
+    color: var(--black-color);
+    font-size: var(--text-size-m);
+    font-family: "Manrope", sans-serif;
+    resize: none;
+}
+
+.formulario button[type="submit"] {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+/* SECCION: FOOTER */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10rem 0 2rem;
+    gap: 5rem;
+    background: linear-gradient(to bottom, var(--background-color), var(--black-color));
+    color: var(--white-color);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.footer-container ul {
+    list-style: none;
+}
+
+.footer-container a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: var(--white-color);
+    text-decoration: none;
+}
+
+.footer-container i {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+
+.footer-container a:hover {
+    color: var(--accent-color);
+}
+
+.footer-container a:hover i {
+    color: var(--white-color);
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.footer-item h4 {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+
+/* QUERIES MEDIA */
+
+@media (max-width: 1200px) {
+    .card {
+        flex: calc(50% - 2rem);
+    }
+}
+
+@media (max-width: 600px) {
+    .card {
+        flex: 100%;
+    }
+}

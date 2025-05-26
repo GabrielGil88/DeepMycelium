@@ -1,0 +1,1 @@
+Este proyecto es una página web básica desarrollada como parte de un curso de Front-End. La página será utilizada a futuro como página de portfolio para mostrar mis trabajos UX.
