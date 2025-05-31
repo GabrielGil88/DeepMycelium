@@ -15,7 +15,7 @@ body {
 
 :root {
     --max-width: 1200px;
-    --container-padding: 1rem;
+    --container-padding: 25vh;
 
     --primary-color: #2E7D32;
     --secondary-color: #5D4037;
@@ -61,7 +61,7 @@ span {
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 10rem var(--container-padding);
+    padding: var(--container-padding) 0;
 }
 
 /* Subtitulo */
@@ -77,7 +77,8 @@ h2 {
 /* Boton General */
 .btn-general {
     display: flex;
-    width: 20%;
+    width: auto;
+    max-width: 300px;
     justify-content: center;
     align-items: center;
     padding: 1rem;
@@ -166,7 +167,8 @@ h1 {
 }
 
 .hero-container {
-    padding-top: 20rem;
+    display: flex;
+    justify-content: center;
 }
 
 .hero {
@@ -176,7 +178,7 @@ h1 {
     align-items: center;
     width: 80%;
     gap: 2rem;
-    margin: 0 auto;
+    padding-top: 10vh;
 }
 
 .hero p {
@@ -380,26 +382,35 @@ h1 {
 
 /* SECCION: ¿QUIENES SOMOS? */
 
+.quienes-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20vh;
+}
+
 .quienes-container {
     display: flex;
     width: 100%;
-    align-items: space-between;
-    gap: 10rem;    
+    justify-content: space-between;
+    align-items: center;
+    gap: 5rem;
+    flex-wrap: nowrap;
 }
 
 .quienes-texto {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    width: 100%;
     justify-content: space-evenly;
     font-size: var(--text-size-l);
     gap: 1rem;
 }
 
 .quienes-img {
-    width: 60vh;
-    object-fit: cover;
-    object-position: center;
+    flex: 1;
+    max-width: 50%;
+    width: 100%;
+    height: auto;
     border-radius: var(--radius-img-global);
 }
 
@@ -541,6 +552,15 @@ footer {
     .card {
         flex: calc(50% - 2rem);
     }
+
+    .container {
+        padding: var(--container-padding) 15vw;
+    }
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
 }
 
 @media (max-width: 600px) {
@@ -574,5 +594,15 @@ footer {
 
     nav {
         flex-wrap: wrap;
+    }
+
+    .quienes-container {
+        flex-wrap: wrap;
+    }
+
+    .quienes-img {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
     }
 }

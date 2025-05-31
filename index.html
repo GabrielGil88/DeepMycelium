@@ -27,7 +27,7 @@
             <!-- Botón hamburguesa -->
             <a class="hamburger" id="hamburger-btn">
                 <i class="fa-solid fa-bars nav-icon navbar-item"></i></a>
-            <div class="nav-container">
+            <div class="nav-container" id="nav-menu">
                 <ul class="navbar-item">
                     <li><a href="#top">Productos</a></li>
                     <li><a href="#top">Información</a></li>
@@ -128,36 +128,43 @@
             </div>
         </section>
         <section id="quienes-somos">
-            <div class="container quienes-container">
-                <div class="quienes-texto">
-                    <h2>¿QUIENES SOMOS?</h2>
-                    <p> Somos <span>Deep Mycelium</span>, un pequeño emprendimiento del oeste de Buenos Aires
-                        dedicado al
-                        cultivo artesanal de hongos funcionales. Trabajamos desde el respeto por la naturaleza y el
-                        conocimiento de los ciclos de la vida, inspirándonos en el micelio —esa red subterránea que
-                        sostiene
-                        y conecta los ecosistemas— para crear productos que acompañen el bienestar integral.
-                    </p>
-                    <p> Creemos en lo <b>simple</b>, lo <b>profundo</b> y lo <b>escencial</b>. Por eso cultivamos con
-                        conciencia, cuidando
-                        cada
-                        paso del proceso, desde el sustrato hasta el envasado, para ofrecerte una alternativa
-                        natural,
-                        saludable y poderosa.
-                    </p>
+            <div class="container quienes-area">
+                <div class="quienes-container">
+                    <div class="quienes-texto">
+                        <h2>¿QUIENES SOMOS?</h2>
+                        <p> Somos <span>Deep Mycelium</span>, un pequeño emprendimiento del oeste de Buenos Aires
+                            dedicado al
+                            cultivo artesanal de hongos funcionales. Trabajamos desde el respeto por la naturaleza y el
+                            conocimiento de los ciclos de la vida, inspirándonos en el micelio —esa red subterránea que
+                            sostiene
+                            y conecta los ecosistemas— para crear productos que acompañen el bienestar integral.
+                        </p>
+                        <p> Creemos en lo <b>simple</b>, lo <b>profundo</b> y lo <b>escencial</b>. Por eso cultivamos
+                            con
+                            conciencia, cuidando
+                            cada
+                            paso del proceso, desde el sustrato hasta el envasado, para ofrecerte una alternativa
+                            natural,
+                            saludable y poderosa.
+                        </p>
+                    </div>
+                    <img class="quienes-img" src="./imagenes/img_quienes.jpg" alt="cultivador con girlgolas creciento">
                 </div>
-                <img class="quienes-img" src="./imagenes/img_quienes.jpg" alt="melena de leon">
-            </div>
-            <div class="container quienes-container">
-                <img class="quienes-img" src="./imagenes/img_girgolas.jpg" alt="melena de leon">
-                <div class="quienes-texto">
-                    <h2>¿POR QUÉ ELEGIRNOS?</h2>
-                    <p> Creemos que el verdadero bienestar nace desde adentro, en equilibrio con nuestro entorno.
-                        Nuestros productos están pensados para conectar cuerpo, mente y naturaleza, combinando saberes
-                        ancestrales con prácticas responsables.
-                        Trabajamos con cepas seleccionadas, procesos limpios y un profundo compromiso con la calidad y
-                        la armonía del organismo. No solo cultivamos hongos: cultivamos salud, conexión y conciencia.
-                    </p>
+                <div class="quienes-container">
+                    <img class="quienes-img" src="./imagenes/img_girgolas.jpg"
+                        alt="girgolas de distintos tipos creciendo">
+                    <div class="quienes-texto">
+                        <h2>¿POR QUÉ ELEGIRNOS?</h2>
+                        <p> Creemos que el verdadero bienestar nace desde adentro, en equilibrio con nuestro entorno.
+                            Nuestros productos están pensados para conectar cuerpo, mente y naturaleza, combinando
+                            saberes
+                            ancestrales con prácticas responsables.
+                            Trabajamos con cepas seleccionadas, procesos limpios y un profundo compromiso con la calidad
+                            y
+                            la armonía del organismo. No solo cultivamos hongos: cultivamos salud, conexión y
+                            conciencia.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -237,6 +244,30 @@
         </div>
         <p>&copy; 2025 Deep Mycelium. Todos los derechos reservados. Buenos Aires, Argentina.</p>
     </footer>
+    <script>
+        // Script para el botón hamburguesa y el menú de navegación
+        // Espera a que el DOM esté completamente cargado
+        document.addEventListener("DOMContentLoaded", function () {
+            const hamburger = document.getElementById('hamburger-btn');
+            const navMenu = document.getElementById('nav-menu');
+
+            // Toggle al hacer clic en el botón hamburguesa
+            hamburger.addEventListener('click', (event) => {
+                event.stopPropagation(); // Evita que se dispare el evento global
+                navMenu.classList.toggle('active');
+            });
+
+            // Cerrar menú si se hace clic fuera de él
+            document.addEventListener('click', (event) => {
+                const isClickInsideMenu = navMenu.contains(event.target);
+                const isClickOnHamburger = hamburger.contains(event.target);
+
+                if (!isClickInsideMenu && !isClickOnHamburger) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
