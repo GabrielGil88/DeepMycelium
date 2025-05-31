@@ -206,7 +206,7 @@ h1 {
 }
 
 .card:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
 }
 
 .card img {
@@ -280,7 +280,6 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .grid-categorias {
@@ -302,6 +301,12 @@ h1 {
     font-size: var(--text-size-xl);
     font-weight: 700;
     border-radius: var(--radius-img-global);
+    transition: transform 0.2s ease;
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+    color: var(--accent-color);
 }
 
 
