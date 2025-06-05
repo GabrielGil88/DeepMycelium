@@ -5,14 +5,7 @@
     box-sizing: border-box;
 }
 
-/* Estilos Bases */
-html,
-body {
-    height: 100%;
-    font-family: "Manrope", sans-serif;
-    scroll-behavior: smooth;
-}
-
+/* Variables Globales */
 :root {
     --max-width: 1200px;
     --container-padding: 25vh;
@@ -41,9 +34,16 @@ body {
     --radius-btn-global: 8px;
 }
 
+/* Estilos Bases */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--background-color);
     color: var(--white-color);
+    font-family: "Manrope", sans-serif;
+    scroll-behavior: smooth;
 }
 
 a {
@@ -156,9 +156,10 @@ nav ul {
 
 .bg-main-container {
     background-image: url(../imagenes/background.jpg);
-    background-size: cover;
-    background-position: center;
+    background-position: top center;
     background-repeat: no-repeat;
+    background-size: contain;
+    background-color: var(--background-color);
 }
 
 h1 {
@@ -556,21 +557,26 @@ footer {
     .container {
         padding: var(--container-padding) 15vw;
     }
-}
 
-.footer-container {
-    display: flex;
-    flex-direction: column;
-}
-
-@media (max-width: 600px) {
-    .card {
-        flex: 100%;
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
     }
 }
 
-/* Menu Hamburguesa responsive*/
+
 @media (max-width: 768px) {
+
+    .container {
+        padding: 15vh 5vw;
+    }
+
+    .bg-main-container {
+        background-size: contain;
+    }
+
+    /* Menu Hamburguesa responsive*/
     .nav-container {
         display: none;
         flex-direction: column;
@@ -583,11 +589,11 @@ footer {
     }
 
     .nav-container.active {
-        display: flex;        
+        display: flex;
     }
 
     .hamburger {
-        display: block;    
+        display: block;
     }
 
     nav {
@@ -599,6 +605,19 @@ footer {
         width: fit-content;
     }
 
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: var(--text-size-xl);
+    }
+
+    .video-texto {
+        font-size: var(--text-size-xl);
+        padding: 0 5vw;
+    }
+
     .quienes-container {
         flex-wrap: wrap;
     }
@@ -607,5 +626,30 @@ footer {
         max-width: 100%;
         width: 100%;
         height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .bg-main-container {
+        background-size:auto;
+    }
+
+    .card {
+        flex: 100%;
+    }
+
+    .formulario-datos {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .footer-item h4 {
+        font-size: var(--text-size-xl);
     }
 }
