@@ -598,6 +598,7 @@ footer {
 
     nav {
         flex-wrap: wrap;
+        padding: 1rem 0.5rem 0 0.5rem;
     }
 
     .navbar-item {
