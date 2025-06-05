@@ -578,22 +578,25 @@ footer {
         position: absolute;
         top: 100%;
         right: 0;
-        background: #F5F5F01A;
         padding: 1rem;
-        border-radius: 10px;
-        backdrop-filter: blur(5px);
+        align-items: end;
     }
 
     .nav-container.active {
-        display: flex;
+        display: flex;        
     }
 
     .hamburger {
-        display: block;
+        display: block;    
     }
 
     nav {
         flex-wrap: wrap;
+    }
+
+    .navbar-item {
+        flex-direction: column;
+        width: fit-content;
     }
 
     .quienes-container {
