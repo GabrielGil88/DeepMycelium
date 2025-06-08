@@ -337,7 +337,7 @@ h1 {
 .video-container {
     position: relative;
     width: 100%;
-    height: 80vh;
+    height: 60vh;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -387,13 +387,14 @@ h1 {
 .quienes-area {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20vh;
 }
 
 .quienes-container {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 5rem;
     flex-wrap: nowrap;
@@ -429,17 +430,17 @@ h1 {
     align-items: flex-start;
 }
 
-.envios-card{
+.envios-card {
     display: flex;
     flex-direction: column;
-    justify-content:start;
+    justify-content: start;
     align-items: center;
     width: 100%;
     padding: 2rem;
     gap: 1rem;
 }
 
-.envios-card img{
+.envios-card img {
     width: 120px;
 }
 
@@ -584,6 +585,21 @@ footer {
         flex-direction: column;
         gap: 4rem;
     }
+
+    .quienes-container {
+        flex-wrap: wrap;
+    }
+
+    .quienes-swap {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .quienes-img {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
 }
 
 
@@ -640,22 +656,12 @@ footer {
         padding: 0 5vw;
     }
 
-    .quienes-container {
+    .envios-container {
         flex-wrap: wrap;
     }
 
-    .quienes-img {
-        max-width: 100%;
-        width: 100%;
-        height: auto;
-    }
-
-    .envios-container{
-        flex-wrap: wrap;
-    }
-
-    .envios-card p{
-        width: 60%;
+    .envios-card p {
+        width: 70%;
     }
 }
 
@@ -681,5 +687,9 @@ footer {
 
     .footer-item h4 {
         font-size: var(--text-size-xl);
+    }
+
+    .envios-card p {
+        width: 100%;
     }
 }
