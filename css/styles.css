@@ -8,7 +8,7 @@
 /* Variables Globales */
 :root {
     --max-width: 1200px;
-    --container-padding: 25vh;
+    --container-padding: 20vh;
 
     --primary-color: #2E7D32;
     --secondary-color: #5D4037;
@@ -101,7 +101,7 @@ h2 {
 nav {
     display: flex;
     width: 100%;
-    padding: 1rem 2rem 0 2rem;
+    padding: 2rem 2rem 0 2rem;
     position: fixed;
     z-index: 1;
     justify-content: space-between;
@@ -426,6 +426,9 @@ h1 {
 .envios-container {
     display: flex;
     width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 0 5rem 0;
     justify-content: initial;
     align-items: flex-start;
 }
