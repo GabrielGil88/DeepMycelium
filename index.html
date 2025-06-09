@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Conecto CSS -->
+    <title>DeepMycelium</title>
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Conecto Fonts -->
+
+    <!-- Tipografías -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Manrope:wght@200..800&display=swap"
         rel="stylesheet">
-    <!-- Conecto iconos -->
+
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-
-    <title>DeepMycelium</title>
-
 </head>
 
 <body>
@@ -25,8 +25,9 @@
         <nav>
             <a class="navbar-item" href="#top"><i class="fa-solid fa-house nav-icon"></i></a>
             <!-- Botón hamburguesa -->
-            <a class="hamburger" id="hamburger-btn">
-                <i class="fa-solid fa-bars nav-icon navbar-item"></i></a>
+            <button class="navbar-item hamburger" id="hamburger-btn" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú de navegación">
+            <i class="fa-solid fa-bars nav-icon"></i></button>
+
             <div class="nav-container" id="nav-menu">
                 <ul class="navbar-item">
                     <li><a href="#top">Productos</a></li>
@@ -38,18 +39,18 @@
             </div>
         </nav>
     </header>
+
     <main>
         <div class="bg-main-container">
             <section class="container hero-container">
                 <div class="hero">
                     <h1>Reconectá con tu bienestar desde la raíz</h1>
                     <p>En <span>Deep Mycelium</span> te ofrecemos productos naturales, conocimiento confiable y una guía
-                        consciente para que
-                        descubras el poder de los hongos adaptógenos. Combinamos ciencia y tradición para acompañarte en
-                        tu
-                        camino de transformación y salud integral.</p>
+                        consciente para que descubras el poder de los hongos adaptógenos. Combinamos ciencia y tradición
+                        para acompañarte en tu camino de transformación y salud integral.</p>
                 </div>
             </section>
+
             <section class="container productos-container">
                 <h2>PRODUCTOS DESTACADOS</h2>
                 <div class="cards-container">
@@ -64,6 +65,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card">
                         <img src="imagenes/img_capsulasCordycep.jpg" alt="Capsulas de Cordyceps">
                         <div class="card-text">
@@ -75,6 +77,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card">
                         <img src="imagenes/img_extractoMelena.jpg" alt="Extracto de Melena de león">
                         <div class="card-text">
@@ -86,6 +89,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card">
                         <img src="imagenes/img_polvoReishi.jpg" alt="Polvo de Reishi">
                         <div class="card-text">
@@ -97,9 +101,11 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <button class="btn-general" href="">Ver página de la tienda</button>
             </section>
+
             <section class="container grid-container">
                 <div class="grid-categorias">
                     <a href="/categoria1" class="grid-item grid-img1">Cápsulas</a>
@@ -113,8 +119,8 @@
                 </div>
             </section>
         </div>
+
         <section class="video-container">
-            <!-- Video de fondo -->
             <video class="video-background" autoplay muted loop playsinline>
                 <source src="./videos/hongos-video.mp4" type="video/mp4">
                 Tu navegador no soporta videos HTML5.
@@ -127,47 +133,39 @@
                     moderna y en quienes buscan alternativas naturales para acompañar su salud.</p>
             </div>
         </section>
+
         <section id="quienes-somos">
             <div class="container quienes-area">
                 <div class="quienes-container">
                     <div class="quienes-texto">
                         <h2>¿QUIENES SOMOS?</h2>
                         <p> Somos <span>Deep Mycelium</span>, un pequeño emprendimiento del oeste de Buenos Aires
-                            dedicado al
-                            cultivo artesanal de hongos funcionales. Trabajamos desde el respeto por la naturaleza y el
+                            dedicado al cultivo artesanal de hongos funcionales. Trabajamos desde el respeto por la naturaleza y el
                             conocimiento de los ciclos de la vida, inspirándonos en el micelio —esa red subterránea que
-                            sostiene
-                            y conecta los ecosistemas— para crear productos que acompañen el bienestar integral.
+                            sostiene y conecta los ecosistemas— para crear productos que acompañen el bienestar integral.
                         </p>
                         <p> Creemos en lo <b>simple</b>, lo <b>profundo</b> y lo <b>escencial</b>. Por eso cultivamos
-                            con
-                            conciencia, cuidando
-                            cada
-                            paso del proceso, desde el sustrato hasta el envasado, para ofrecerte una alternativa
-                            natural,
-                            saludable y poderosa.
+                            con conciencia, cuidando cada paso del proceso, desde el sustrato hasta el envasado, para ofrecerte 
+                            una alternativa natural, saludable y poderosa.
                         </p>
                     </div>
                     <img class="quienes-img" src="./imagenes/img_quienes.jpg" alt="cultivador con girlgolas creciento">
                 </div>
                 <div class="quienes-container quienes-swap">
-                    <img class="quienes-img" src="./imagenes/img_girgolas.jpg"
-                        alt="girgolas de distintos tipos creciendo">
+                    <img class="quienes-img" src="./imagenes/img_girgolas.jpg" alt="girgolas de distintos tipos creciendo">
                     <div class="quienes-texto">
                         <h2>¿POR QUÉ ELEGIRNOS?</h2>
                         <p> Creemos que el verdadero bienestar nace desde adentro, en equilibrio con nuestro entorno.
                             Nuestros productos están pensados para conectar cuerpo, mente y naturaleza, combinando
-                            saberes
-                            ancestrales con prácticas responsables.
+                            saberes ancestrales con prácticas responsables.
                             Trabajamos con cepas seleccionadas, procesos limpios y un profundo compromiso con la calidad
-                            y
-                            la armonía del organismo. No solo cultivamos hongos: cultivamos salud, conexión y
-                            conciencia.
+                            y la armonía del organismo. No solo cultivamos hongos: cultivamos salud, conexión y conciencia.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
+
         <section id="envios">
             <div class="envios-container">
                 <div class="envios-card">
@@ -187,18 +185,20 @@
                 </div>
             </div>
         </section>
+
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26270.21858816166!2d-58.583976942091915!3d-34.6097918975911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb8698cab7fa3%3A0xc4d83fe138c75b6f!2sCaseros%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1747064603682!5m2!1ses!2sar"
             width=100% height="300px" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
+
         <section id="contacto">
             <div class="container contacto-container">
                 <h2>CONTACTO</h2>
                 <p>Si tenés dudas sobre el mundo fungi, querés más info sobre nuestros artículos publicados o estás
                     interesado en nuestra venta mayorista, no dudes en escribirnos.
-                    <br>¡Te responderemos lo antes posible!
-                </p>
+                    <br>¡Te responderemos lo antes posible!</p>
+
                 <form class="formulario" action="https://formspree.io/f/manokeqv" method="POST">
                     <div class="formulario-datos">
                         <div>
@@ -212,14 +212,14 @@
                     </div>
                     <div>
                         <label for="message">Mensaje</label>
-                        <textarea name="message" rows="4" cols="50" placeholder="Ingrese su mensaje aquí..."
-                            required></textarea>
+                        <textarea name="message" rows="4" cols="50" placeholder="Ingrese su mensaje aquí..." required></textarea>
                         <button type="submit" class="btn-general">Enviar</button>
                     </div>
                 </form>
             </div>
         </section>
     </main>
+
     <footer>
         <div class="footer-container">
             <div class="footer-item">
@@ -228,10 +228,12 @@
                     Volver al inicio
                 </a>
             </div>
+
             <div class="footer-item">
                 <img src="imagenes/Icon-DeepMycelium.svg" alt="Logo de Deep Mycelium" width="180px">
                 <h4>Deep Mycelium</h4>
             </div>
+
             <div class="footer-item">
                 <ul>
                     <li>
@@ -255,8 +257,10 @@
                 </ul>
             </div>
         </div>
+
         <p>&copy; 2025 Deep Mycelium. Todos los derechos reservados. Buenos Aires, Argentina.</p>
     </footer>
+
     <script src="js/script.js"></script>
 </body>
 

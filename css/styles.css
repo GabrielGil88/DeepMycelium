@@ -43,7 +43,6 @@ body {
     background-color: var(--background-color);
     color: var(--white-color);
     font-family: "Manrope", sans-serif;
-    scroll-behavior: smooth;
 }
 
 a {
@@ -56,6 +55,19 @@ span {
     color: var(--accent-color);
 }
 
+h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 5rem;
+}
+
+/* Subtitulo */
+h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: var(--text-size-xxxl);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+}
 
 /* Contenedor Base */
 .container {
@@ -66,24 +78,15 @@ span {
     margin-top: -10px;
 }
 
-/* Subtitulo */
-h2 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: var(--text-size-xxxl);
-    font-weight: 800;
-    color: var(--white-color);
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
 /* Boton General */
 .btn-general {
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem 2rem;
     border-radius: var(--radius-btn-global);
     background-color: transparent;
-    border: 0.15rem solid var(--accent-color);
+    border: 2px solid var(--accent-color);
     color: var(--accent-color);
     font-size: var(--text-size-m);
     font-weight: bold;
@@ -101,11 +104,11 @@ h2 {
 nav {
     display: flex;
     width: 100%;
+    justify-content: space-between;
+    align-items: center;
     padding: 2rem 2rem 0 2rem;
     position: fixed;
     z-index: 1;
-    justify-content: space-between;
-    align-items: center;
 }
 
 nav ul {
@@ -119,14 +122,13 @@ nav ul {
     padding: 1.2rem 2rem;
     gap: 2rem;
     border-radius: 40px;
-    border: 1px solid #F5F5F030;
+    border: 1px solid #f5f5f01d;
     background: #F5F5F01A;
     box-shadow: 2px 4px 10px 0px var(--black-color);
     backdrop-filter: blur(2px);
 }
 
 .navbar-item:hover {
-    background: #F5F5F030;
     color: var(--accent-color);
     box-shadow: 2px 4px 10px 0px var(--accent-color);
 }
@@ -146,28 +148,19 @@ nav ul {
 
 
 /* Menu Hamburguesa */
-
 .hamburger {
     display: none;
-    background: none;
-    border: none;
     cursor: pointer;
     color: var(--light-grey-color);
 }
 
 /* HERO */
-
 .bg-main-container {
     background-image: url(../imagenes/background.jpg);
     background-position: top center;
     background-repeat: no-repeat;
     background-size: contain;
     background-color: var(--background-color);
-}
-
-h1 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 5rem;
 }
 
 .hero-container {
@@ -178,7 +171,6 @@ h1 {
 .hero {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 80%;
     gap: 2rem;
@@ -187,15 +179,12 @@ h1 {
 
 .hero p {
     font-size: var(--text-size-l);
-    color: var(--white-color);
 }
 
 /* SECCION: PRODUCTOS DESTACADOS */
-
 .productos-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
     align-items: center;
     gap: 2rem;
 }
@@ -205,7 +194,6 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 2rem;
-    align-items: stretch;
 }
 
 /* Card de productos*/
@@ -215,8 +203,8 @@ h1 {
     flex: calc(25% - 2rem);
     justify-content: space-between;
     border-radius: var(--radius-img-global);
-    box-shadow: 0px 0px 10px 0px var(--black-color);
     overflow: hidden;
+    box-shadow: 0px 0px 10px 0px var(--black-color);
     transition: transform 0.2s ease;
 }
 
@@ -235,12 +223,12 @@ h1 {
 .card-text {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     justify-content: space-between;
+    flex-grow: 1;
     padding: 1rem;
     gap: 1rem;
-    color: var(--black-color);
     background-color: var(--white-color);
+    color: var(--black-color);
     border-radius: var(--radius-img-global);
     margin-top: -1rem;
     box-shadow: 0px 0px 10px 0px var(--black-color);
@@ -257,25 +245,20 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     gap: 1rem;
 }
 
 .precio-btn p {
     font-size: var(--text-size-xl);
     font-weight: 600;
-    display: flex;
-    align-items: center;
     width: 50%;
 }
 
 .precio-btn a {
-    display: flex;
-    justify-content: center;
+    text-align: center;
     width: 50%;
-    padding: 1rem;
-    border-radius: var(--radius-btn-global);
     padding: 0.5rem 1rem;
+    border-radius: var(--radius-btn-global);
     background-color: var(--primary-color);
     color: var(--white-color);
 }
@@ -287,13 +270,9 @@ h1 {
 
 
 /* SECCION: CATEGORIAS */
-
-
 .grid-container {
     display: flex;
-    width: 100%;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -307,16 +286,17 @@ h1 {
 
 .grid-item {
     display: flex;
-    width: 100%;
-    height: 200px;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 200px;
     background-color: var(--secondary-color);
     color: var(--text-on-secondary);
     font-size: var(--text-size-xl);
     font-weight: 700;
     border-radius: var(--radius-img-global);
     transition: transform 0.2s ease;
+    text-shadow: 0 1px 2px var(--black-color);
 }
 
 .grid-item:hover {
@@ -333,15 +313,13 @@ h1 {
 }
 
 /* SECCION: VIDEO INFORMATIVO */
-
 .video-container {
     position: relative;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
     height: 60vh;
     overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
     background-attachment: fixed;
 }
 
@@ -349,23 +327,22 @@ h1 {
     position: fixed;
     top: 55%;
     left: 50%;
-    width: auto;
     height: 100%;
     min-width: 100%;
     min-height: 100%;
+    object-fit: cover;
     transform: translate(-50%, -50%);
     z-index: -2;
-    object-fit: cover;
 }
 
 .video-texto {
     display: flex;
     flex-direction: column;
-    padding: 0 20vh;
-    height: 100%;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 0 20vh;
+    height: 100%;
     font-family: "Cormorant Garamond", serif;
     font-weight: 700;
     font-size: var(--text-size-xl);
@@ -411,52 +388,46 @@ h1 {
 
 .quienes-img {
     flex: 1;
-    max-width: 50%;
     width: 100%;
+    max-width: 50%;
     height: auto;
     border-radius: var(--radius-img-global);
 }
 
-.quienes-container h2 {
-    justify-content: center;
-}
-
-
 /* SECCION: ENVIOS */
 .envios-container {
     display: flex;
-    width: 100%;
+    justify-content: space-between;
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 0 5rem 0;
-    justify-content: initial;
     align-items: flex-start;
 }
 
 .envios-card {
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    width: 100%;
+    text-align: center;
     padding: 2rem;
     gap: 1rem;
+    font-size: var(--text-size-l);
+}
+
+.envios-card p {
+    width: 70%;
 }
 
 .envios-card img {
     width: 120px;
 }
 
-.envios-container p {
-    font-size: var(--text-size-m);
-    text-align: center;
-}
-
 /* SECCION: CONTACTO */
 .contacto-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     gap: 2rem;
 }
@@ -477,7 +448,6 @@ h1 {
     display: flex;
     width: 100%;
     gap: 2rem;
-
 }
 
 .formulario-datos div {
@@ -504,13 +474,10 @@ h1 {
 }
 
 /* SECCION: FOOTER */
-
 footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 100%;
     padding: 10rem 0 2rem;
     gap: 5rem;
     background: linear-gradient(to bottom, var(--background-color), var(--black-color));
@@ -567,7 +534,6 @@ footer {
 
 
 /* QUERIES MEDIA */
-
 @media (min-width: 1200px) {
     .contacto-container {
         width: 50%;
@@ -584,7 +550,6 @@ footer {
     }
 
     .footer-container {
-        display: flex;
         flex-direction: column;
         gap: 4rem;
     }
@@ -594,7 +559,6 @@ footer {
     }
 
     .quienes-swap {
-        display: flex;
         flex-direction: column-reverse;
     }
 
@@ -605,9 +569,7 @@ footer {
     }
 }
 
-
 @media (max-width: 768px) {
-
     .container {
         padding: 15vh 5vw;
     }
@@ -617,6 +579,11 @@ footer {
     }
 
     /* Menu Hamburguesa responsive*/
+    nav {
+        flex-wrap: wrap;
+        padding: 1rem 0.5rem 0 0.5rem;
+    }
+
     .nav-container {
         display: none;
         flex-direction: column;
@@ -634,11 +601,6 @@ footer {
 
     .hamburger {
         display: block;
-    }
-
-    nav {
-        flex-wrap: wrap;
-        padding: 1rem 0.5rem 0 0.5rem;
     }
 
     .navbar-item {
@@ -690,9 +652,5 @@ footer {
 
     .footer-item h4 {
         font-size: var(--text-size-xl);
-    }
-
-    .envios-card p {
-        width: 100%;
     }
 }
