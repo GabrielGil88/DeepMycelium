@@ -550,7 +550,7 @@ footer {
     }
 
     .footer-container {
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 4rem;
     }
 
@@ -608,12 +608,20 @@ footer {
         width: fit-content;
     }
 
+    .to-top {
+        flex-direction: row;
+    }
+
     h1 {
         font-size: 3rem;
     }
 
     h2 {
-        font-size: var(--text-size-xl);
+        font-size: var(--text-size-xxl);
+    }
+
+    p {
+        font-size: var(--text-size-m);
     }
 
     .video-texto {
@@ -644,13 +652,11 @@ footer {
         gap: 1rem;
     }
 
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 2rem;
-    }
-
     .footer-item h4 {
         font-size: var(--text-size-xl);
+    }
+
+    footer p{
+        text-align: center;
     }
 }
