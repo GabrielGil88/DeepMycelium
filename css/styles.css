@@ -23,12 +23,12 @@
     --hover-primary-color: #265529;
     --hover-secondary-color: #4E342E;
 
-    --text-size-s: 0.8rem;
-    --text-size-m: 1rem;
-    --text-size-l: 1.2rem;
-    --text-size-xl: 1.5rem;
-    --text-size-xxl: 2rem;
-    --text-size-xxxl: 2.5rem;
+    --text-size-xs: 0.8rem;
+    --text-size-s: 1rem;
+    --text-size-m: 1.2rem;
+    --text-size-l: 1.5rem;
+    --text-size-xl: 2rem;
+    --text-size-xxl: 2.5rem;
 
     --radius-img-global: 16px;
     --radius-btn-global: 8px;
@@ -63,7 +63,7 @@ h1 {
 /* Subtitulo */
 h2 {
     font-family: "Cormorant Garamond", serif;
-    font-size: var(--text-size-xxxl);
+    font-size: var(--text-size-xxl);
     font-weight: 800;
     text-align: center;
     margin-bottom: 2rem;
@@ -88,9 +88,8 @@ h2 {
     background-color: transparent;
     border: 2px solid var(--accent-color);
     color: var(--accent-color);
-    font-size: var(--text-size-m);
+    font-size: var(--text-size-s);
     font-weight: bold;
-    margin-top: 15vh;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -143,7 +142,7 @@ nav ul {
 }
 
 .nav-icon {
-    font-size: var(--text-size-xl);
+    font-size: var(--text-size-l);
 }
 
 
@@ -178,7 +177,7 @@ nav ul {
 }
 
 .hero p {
-    font-size: var(--text-size-l);
+    font-size: var(--text-size-m);
 }
 
 /* SECCION: PRODUCTOS DESTACADOS */
@@ -194,6 +193,7 @@ nav ul {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 2rem;
+    padding-bottom: 10vh;
 }
 
 /* Card de productos*/
@@ -234,8 +234,12 @@ nav ul {
     box-shadow: 0px 0px 10px 0px var(--black-color);
 }
 
+.card-text p {
+    font-size: var(--text-size-xs);
+}
+
 .card-text h3 {
-    font-size: var(--text-size-xl);
+    font-size: var(--text-size-m);
     font-weight: 700;
 }
 
@@ -249,7 +253,7 @@ nav ul {
 }
 
 .precio-btn p {
-    font-size: var(--text-size-xl);
+    font-size: var(--text-size-l);
     font-weight: 600;
     width: 50%;
 }
@@ -292,7 +296,7 @@ nav ul {
     height: 200px;
     background-color: var(--secondary-color);
     color: var(--text-on-secondary);
-    font-size: var(--text-size-xl);
+    font-size: var(--text-size-l);
     font-weight: 700;
     border-radius: var(--radius-img-global);
     transition: transform 0.2s ease;
@@ -317,10 +321,12 @@ nav ul {
     position: relative;
     align-items: center;
     justify-content: center;
-    height: 60vh;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     background-attachment: fixed;
+    gap: 2rem;
+    padding: 10vh 0;
 }
 
 .video-background {
@@ -341,7 +347,7 @@ nav ul {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20vh;
+    padding: 10vh 10vh 5vh 10vh; 
     height: 100%;
     font-family: "Cormorant Garamond", serif;
     font-weight: 700;
@@ -382,7 +388,7 @@ nav ul {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    font-size: var(--text-size-l);
+    font-size: var(--text-size-m);
     gap: 1rem;
 }
 
@@ -413,7 +419,7 @@ nav ul {
     text-align: center;
     padding: 2rem;
     gap: 1rem;
-    font-size: var(--text-size-l);
+    font-size: var(--text-size-m);
 }
 
 .envios-card p {
@@ -433,7 +439,7 @@ nav ul {
 }
 
 .contacto-container p {
-    font-size: var(--text-size-l);
+    font-size: var(--text-size-m);
     padding: 2rem 0;
 }
 
@@ -463,7 +469,6 @@ nav ul {
     border: 1px solid var(--grey-color);
     background-color: var(--white-color);
     color: var(--black-color);
-    font-size: var(--text-size-m);
     font-family: "Manrope", sans-serif;
     resize: none;
 }
@@ -528,7 +533,7 @@ footer {
 .footer-item h4 {
     font-family: "Cormorant Garamond", serif;
     color: var(--accent-color);
-    font-size: 2.5rem;
+    font-size: var(--text-size-xxl);
     font-weight: 700;
 }
 
@@ -549,11 +554,6 @@ footer {
         padding: var(--container-padding) 15vw;
     }
 
-    .footer-container {
-        flex-direction: column-reverse;
-        gap: 4rem;
-    }
-
     .quienes-container {
         flex-wrap: wrap;
     }
@@ -566,6 +566,11 @@ footer {
         max-width: 100%;
         width: 100%;
         height: auto;
+    }
+
+    .footer-container {
+        flex-direction: column-reverse;
+        gap: 4rem;
     }
 }
 
@@ -617,16 +622,15 @@ footer {
     }
 
     h2 {
-        font-size: var(--text-size-xxl);
-    }
-
-    p {
-        font-size: var(--text-size-m);
+        font-size: var(--text-size-xl);
     }
 
     .video-texto {
-        font-size: var(--text-size-m);
         padding: 0 5vw;
+    }
+
+    .video-texto p {
+        font-size: var(--text-size-m);
     }
 
     .envios-container {
@@ -653,10 +657,10 @@ footer {
     }
 
     .footer-item h4 {
-        font-size: var(--text-size-xl);
+        font-size: var(--text-size-l);
     }
 
-    footer p{
+    footer p {
         text-align: center;
     }
 }
