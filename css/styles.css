@@ -191,7 +191,7 @@ nav ul {
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     gap: 2rem;
     padding-bottom: 10vh;
 }
@@ -200,6 +200,7 @@ nav ul {
 .card {
     display: flex;
     flex-direction: column;
+    max-width: 276px;
     flex: calc(25% - 2rem);
     justify-content: space-between;
     border-radius: var(--radius-img-global);
@@ -258,16 +259,18 @@ nav ul {
     width: 50%;
 }
 
-.precio-btn a {
+.precio-btn button {
     text-align: center;
     width: 50%;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-btn-global);
+    border: none;
     background-color: var(--primary-color);
     color: var(--white-color);
+    box-shadow: 1px 2px 5px 0px var(--background-color);
 }
 
-.precio-btn a:hover {
+.precio-btn button:hover {
     background-color: var(--hover-primary-color);
     color: var(--accent-color);
 }
@@ -548,6 +551,7 @@ footer {
 @media (max-width: 1200px) {
     .card {
         flex: calc(50% - 2rem);
+        max-width: 100%;
     }
 
     .container {

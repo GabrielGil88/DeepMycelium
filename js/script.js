@@ -7,7 +7,7 @@ console.log("El script está conectado correctamente");
 
 // 1. Selección de elementos
 const hamburgerBtn = document.querySelector('#hamburger-btn');
-const navMenu      = document.querySelector('#nav-menu');
+const navMenu = document.querySelector('#nav-menu');
 
 // 2. Alternar estado del menú
 const toggleNavbar = () => {
@@ -40,7 +40,7 @@ const productos = [
     titulo: "Extracto de hongo Reishi",
     descripcion: "Tintura madre de Ganoderma Lucidum 1:1. 60ml.",
     precio: "$20.000",
-    link: "#"
+    id: "#01"
   },
   {
     imgSrc: "imagenes/img_capsulasCordycep.jpg",
@@ -48,7 +48,7 @@ const productos = [
     titulo: "Capsulas de hongo Cordyceps",
     descripcion: "60 capsulas de 700mg de Cordyceps Militaris.",
     precio: "$28.700",
-    link: "#"
+    id: "#02"
   },
   {
     imgSrc: "imagenes/img_extractoMelena.jpg",
@@ -56,7 +56,7 @@ const productos = [
     titulo: "Extracto de hongo Melena de León",
     descripcion: "Tintura madre de Hericium Erinaceus 1:1. 60ml.",
     precio: "$21.500",
-    link: "#"
+    id: "#03"
   },
   {
     imgSrc: "imagenes/img_polvoReishi.jpg",
@@ -64,15 +64,15 @@ const productos = [
     titulo: "Polvo de hongo Reishi",
     descripcion: "Molido de hongo deshidratado de Ganoderma Lucidum. 30gr.",
     precio: "$24.000",
-    link: "#"
-  },
+    id: "#04"
+  }, 
 ];
 
 // 2. contendor donde se insertarán las cards
-const container = document.querySelector(".cards-container");
+const cardsContainer = document.querySelector(".cards-container");
 
 // 3. Función que crea las clases de una card a partir de un objeto producto
-function crearCard({imgSrc, imgAlt, titulo, descripcion, precio, link}) {
+function crearCard({ imgSrc, imgAlt, titulo, descripcion, precio, id }) {
 
   // <div class="card">
   const card = document.createElement("div");
@@ -107,10 +107,15 @@ function crearCard({imgSrc, imgAlt, titulo, descripcion, precio, link}) {
   pPrecio.textContent = precio;
   precioBtn.appendChild(pPrecio);
 
-  //       <a href="#">Comprar</a>
-  const comprar = document.createElement("a");
-  comprar.setAttribute("href", link);
+  //       <button>Comprar</button>
+  const comprar = document.createElement("button");
   comprar.textContent = "Comprar";
+
+  // Por ahora podés dejar esto vacío o con un console.log
+  comprar.addEventListener("click", () => {
+    console.log("Producto agregado al carrito:", id);
+  });
+
   precioBtn.appendChild(comprar);
 
   texto.appendChild(precioBtn); // indica que el precio y botón de compra son hijos de card-text (texto)
@@ -122,5 +127,43 @@ function crearCard({imgSrc, imgAlt, titulo, descripcion, precio, link}) {
 // 4. Recorremos el array y agregamos cada card al DOM
 productos.forEach(producto => {
   const cardElem = crearCard(producto);// crea una card para cada producto (con cada atributo del objeto{})
-  container.appendChild(cardElem);
+  cardsContainer.appendChild(cardElem);
 });
+
+
+// ───────────────────────────────────────────────────────────
+// CARRITO DE COMPRAS
+// ───────────────────────────────────────────────────────────
+
+// Array para almacenar los productos del carrito
+let carrito = [];
+
+// Agrega un producto al carrito o incrementa su cantidad si ya existe.
+function agregarProductoAlCarrito(idProducto) {
+  // Buscar si el producto ya está en el carrito
+  let productoEnCarrito = null;
+  for (let i = 0; i < carrito.length; i++) {
+    if (carrito[i].id === idProducto) {
+      productoEnCarrito = carrito[i];
+      break; // Salir del bucle una vez que se encuentra el producto
+    }
+  }
+
+  if (productoEnCarrito) {
+    // Si el producto ya está, incrementar la cantidad
+    productoEnCarrito.cantidad++;
+  } else {
+    // Si no está, buscar el producto en el array 'productos' original
+    let productoOriginal = null;
+    for (let i = 0; i < productos.length; i++) {
+      if (productos[i].id === idProducto) {
+        productoOriginal = productos[i];
+        break; // Salir del bucle
+      }
+    }
+
+    // Añadir el producto al carrito con cantidad 1
+    carrito.push({ ...productoOriginal, cantidad: 1 });
+  }
+  actualizarCarritoHTML(); // Actualizar la vista del carrito
+}
