@@ -167,3 +167,9 @@ function agregarProductoAlCarrito(idProducto) {
   }
   actualizarCarritoHTML(); // Actualizar la vista del carrito
 }
+
+comprar.addEventListener("click", () => {
+  console.log("Producto agregado al carrito:", id);
+  // Aquí debería ir:
+  agregarProductoAlCarrito(id);
+});
