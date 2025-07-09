@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // INSERTAR PRODUCTOS
 // ───────────────────────────────────────────────────────────
 
-// 1. Definir los productos en un array
+// Definir los productos en un array
 const productos = [
   {
     imgSrc: "imagenes/img_extractoReishi.jpg",
@@ -68,10 +68,38 @@ const productos = [
   }, 
 ];
 
-// 2. contendor donde se insertarán las cards
+// Contendor donde se insertarán las cards
 const cardsContainer = document.querySelector(".cards-container");
 
-// 3. Función que crea las clases de una card a partir de un objeto producto
+// ───────────────────────────────────────────────────────────
+// CARRITO DE COMPRAS
+// ───────────────────────────────────────────────────────────
+
+// Array para el carrito y función para agregar productos
+let carrito = [];
+
+function agregarProductoAlCarrito(idProducto) {
+  const productoEnCarrito = carrito.find(item => item.id === idProducto);
+  if (productoEnCarrito) {
+    productoEnCarrito.cantidad++;
+  } else {
+    const productoOriginal = productos.find(producto => producto.id === idProducto);
+    carrito.push({ ...productoOriginal, cantidad: 1 });
+  }
+  actualizarCarritoHTML();
+}
+
+// Función de ejemplo para refrescar el HTML del carrito (implementa según tu UI)
+function actualizarCarritoHTML() {
+  console.log('Carrito actual:', carrito);
+}
+
+
+// ───────────────────────────────────────────────────────────
+// CREAR LAS CARD DE PRODUCTOS
+// ───────────────────────────────────────────────────────────
+
+// Función que crea las clases de una card a partir de un objeto producto
 function crearCard({ imgSrc, imgAlt, titulo, descripcion, precio, id }) {
 
   // <div class="card">
@@ -111,65 +139,27 @@ function crearCard({ imgSrc, imgAlt, titulo, descripcion, precio, id }) {
   const comprar = document.createElement("button");
   comprar.textContent = "Comprar";
 
-  // Por ahora podés dejar esto vacío o con un console.log
-  comprar.addEventListener("click", () => {
-    console.log("Producto agregado al carrito:", id);
+  // Agregar data-id al botón
+  comprar.dataset.id = id;
+
+  // Listener para agregar al carrito usando el data-id
+  comprar.addEventListener("click", e => {
+    const productoId = e.target.dataset.id;
+    console.log("Producto agregado al carrito:", productoId);
+    agregarProductoAlCarrito(productoId);
   });
 
   precioBtn.appendChild(comprar);
-
   texto.appendChild(precioBtn); // indica que el precio y botón de compra son hijos de card-text (texto)
   card.appendChild(texto); // indica que card-text es un hijo de la card
 
   return card; // devuelve la card completa
 }
 
-// 4. Recorremos el array y agregamos cada card al DOM
+// Recorremos el array y agregamos cada card al DOM
 productos.forEach(producto => {
   const cardElem = crearCard(producto);// crea una card para cada producto (con cada atributo del objeto{})
   cardsContainer.appendChild(cardElem);
 });
 
 
-// ───────────────────────────────────────────────────────────
-// CARRITO DE COMPRAS
-// ───────────────────────────────────────────────────────────
-
-// Array para almacenar los productos del carrito
-let carrito = [];
-
-// Agrega un producto al carrito o incrementa su cantidad si ya existe.
-function agregarProductoAlCarrito(idProducto) {
-  // Buscar si el producto ya está en el carrito
-  let productoEnCarrito = null;
-  for (let i = 0; i < carrito.length; i++) {
-    if (carrito[i].id === idProducto) {
-      productoEnCarrito = carrito[i];
-      break; // Salir del bucle una vez que se encuentra el producto
-    }
-  }
-
-  if (productoEnCarrito) {
-    // Si el producto ya está, incrementar la cantidad
-    productoEnCarrito.cantidad++;
-  } else {
-    // Si no está, buscar el producto en el array 'productos' original
-    let productoOriginal = null;
-    for (let i = 0; i < productos.length; i++) {
-      if (productos[i].id === idProducto) {
-        productoOriginal = productos[i];
-        break; // Salir del bucle
-      }
-    }
-
-    // Añadir el producto al carrito con cantidad 1
-    carrito.push({ ...productoOriginal, cantidad: 1 });
-  }
-  actualizarCarritoHTML(); // Actualizar la vista del carrito
-}
-
-comprar.addEventListener("click", () => {
-  console.log("Producto agregado al carrito:", id);
-  // Aquí debería ir:
-  agregarProductoAlCarrito(id);
-});

@@ -70,8 +70,9 @@ function agregarProductoAlCarrito(idProducto) {
 
 // Maneja el evento de clic en los botones "Comprar".
 function manejarClicComprar(evento) {
+    if (evento.target.classList.contains("btn-comprar")) {
     const productoId = evento.target.dataset.id;
-    agregarProductoAlCarrito(productoId);
+    agregarProductoAlCarrito(productoId);}
 }
 
 // Agrega los productos del array 'productos' al DOM y configura los listeners de "Comprar".
