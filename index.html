@@ -31,12 +31,15 @@
 
             <div class="nav-container" id="nav-menu">
                 <ul class="navbar-item">
-                    <li><a href="#top">Tienda</a></li>
-                    <li><a href="#top">Información</a></li>
+                    <li><a href="pages/tienda.html">Tienda</a></li>
+                    <li><a href="pages/masInformacion.html">Información</a></li>
                     <li><a href="#quienes-somos">¿Quienes somos?</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
-                <a class="navbar-item" href="#top"><i class="fa-solid fa-cart-shopping nav-icon"></i></a>
+                <div class="navbar-item">
+                    <a href="#top"><i class="fa-solid fa-cart-shopping nav-icon"></i></a>
+                    <span id="contador-carrito" class="contadorCarrito" >0</span>
+                </div>
             </div>
         </nav>
     </header>
@@ -54,10 +57,10 @@
 
             <section class="container productos-container">
                 <h2>PRODUCTOS DESTACADOS</h2>
-                    <div class="cards-container">
-                        <!-- Aquí se agregarán las cards de productos con JS -->
-                    </div>
-                <button class="btn-general" href="">Ver página de la tienda</button>
+                <div class="cards-container">
+                    <!-- Aquí se agregarán las cards de productos con JS -->
+                </div>
+                <a class="btn-general" href="pages/tienda.html">Ver más productos en la tienda</a>
             </section>
 
             <section class="container grid-container">
@@ -86,7 +89,7 @@
                 <p>Su uso, con raíces en tradiciones milenarias, ha despertado un creciente interés en la ciencia
                     moderna y en quienes buscan alternativas naturales para acompañar su salud.</p>
             </div>
-            <button class="btn-general" href="">Más información</button>
+            <a class="btn-general" href="pages/masInformacion.html">Más información</a>
         </section>
 
         <section id="quienes-somos">
@@ -174,8 +177,8 @@
                     </div>
                     <div>
                         <label for="message">Mensaje</label>
-                        <textarea name="message" id="message" rows="4" cols="50" placeholder="Ingrese su mensaje aquí..."
-                            required></textarea>
+                        <textarea name="message" id="message" rows="4" cols="50"
+                            placeholder="Ingrese su mensaje aquí..." required></textarea>
                         <button type="submit" class="btn-general">Enviar</button>
                     </div>
                 </form>

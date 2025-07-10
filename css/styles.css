@@ -145,6 +145,25 @@ nav ul {
     font-size: var(--text-size-l);
 }
 
+/* Contador del carrito */
+
+.contadorCarrito {
+  position: absolute;
+  top: 4px;
+  right: 18px;
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 2px 8px;
+  font-size: 14px;
+  display: none; /* Oculto si está en 0 */
+
+}
+#carrito-icono {
+  position: relative;
+  display: inline-block;
+}
 
 /* Menu Hamburguesa */
 .hamburger {

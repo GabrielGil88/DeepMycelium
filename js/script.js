@@ -82,6 +82,7 @@ function agregarProductoAlCarrito(idProducto) {
   const productoEnCarrito = carrito.find(item => item.id === idProducto);
   if (productoEnCarrito) {
     productoEnCarrito.cantidad++;
+  
   } else {
     const productoOriginal = productos.find(producto => producto.id === idProducto);
     carrito.push({ ...productoOriginal, cantidad: 1 });
@@ -92,8 +93,22 @@ function agregarProductoAlCarrito(idProducto) {
 // Función de ejemplo para refrescar el HTML del carrito (implementa según tu UI)
 function actualizarCarritoHTML() {
   console.log('Carrito actual:', carrito);
-}
+  
+  //Calcular el total de productos en el carrito
+  let cantidadTotal = 0;
+  carrito.forEach(item => {cantidadTotal += item.cantidad;});
 
+  //Actualizar el contador del ícono
+  const contador = document.getElementById('contador-carrito');
+  contador.textContent = cantidadTotal;
+
+  //Mostrar u ocultar el contador según el total
+  if (cantidadTotal > 0) {
+    contador.style.display = 'inline-block';
+  } else {
+    contador.style.display = 'none';
+  }
+}
 
 // ───────────────────────────────────────────────────────────
 // CREAR LAS CARD DE PRODUCTOS
