@@ -157,9 +157,8 @@ nav ul {
   border-radius: 100%;
   padding: 2px 8px;
   font-size: 14px;
-  display: none; /* Oculto si está en 0 */
-
 }
+
 #carrito-icono {
   position: relative;
   display: inline-block;

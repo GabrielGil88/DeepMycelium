@@ -91,6 +91,8 @@ function actualizarCarritoHTML() {
 
   //Actualizar el contador del ícono
   const contador = document.getElementById('contador-carrito');
+  if (!contador) return;
+  
   contador.textContent = cantidadTotal;
 
   //Mostrar u ocultar el contador según el total
