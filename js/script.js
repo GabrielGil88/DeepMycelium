@@ -2,34 +2,7 @@
 console.log("El script está conectado correctamente");
 
 // ───────────────────────────────────────────────────────────
-// MENÚ HAMBURGUESA
-// ───────────────────────────────────────────────────────────
-
-// 1. Selección de elementos
-const hamburgerBtn = document.querySelector('#hamburger-btn');
-const navMenu = document.querySelector('#nav-menu');
-
-// 2. Alternar estado del menú
-const toggleNavbar = () => {
-  navMenu.classList.toggle('active'); //crea la clase 'active' y la mete en un toggle (booleano)
-};
-
-// 3. Cerrar si clickeass fuera
-const clickAfuera = event => {
-  if (!event.target.closest('#nav-menu, #hamburger-btn')) {
-    navMenu.classList.remove('active');
-  }
-};
-
-// 4. Inicialización
-document.addEventListener('DOMContentLoaded', () => {
-  hamburgerBtn.addEventListener('click', toggleNavbar);
-  document.addEventListener('click', clickAfuera);
-});
-
-
-// ───────────────────────────────────────────────────────────
-// INSERTAR PRODUCTOS
+// DATOS Y SELECTORES
 // ───────────────────────────────────────────────────────────
 
 // Definir los productos en un array
@@ -40,7 +13,7 @@ const productos = [
     titulo: "Extracto de hongo Reishi",
     descripcion: "Tintura madre de Ganoderma Lucidum 1:1. 60ml.",
     precio: "$20.000",
-    id: "#01"
+    id: "001"
   },
   {
     imgSrc: "imagenes/img_capsulasCordycep.jpg",
@@ -48,7 +21,7 @@ const productos = [
     titulo: "Capsulas de hongo Cordyceps",
     descripcion: "60 capsulas de 700mg de Cordyceps Militaris.",
     precio: "$28.700",
-    id: "#02"
+    id: "002"
   },
   {
     imgSrc: "imagenes/img_extractoMelena.jpg",
@@ -56,7 +29,7 @@ const productos = [
     titulo: "Extracto de hongo Melena de León",
     descripcion: "Tintura madre de Hericium Erinaceus 1:1. 60ml.",
     precio: "$21.500",
-    id: "#03"
+    id: "003"
   },
   {
     imgSrc: "imagenes/img_polvoReishi.jpg",
@@ -64,39 +37,57 @@ const productos = [
     titulo: "Polvo de hongo Reishi",
     descripcion: "Molido de hongo deshidratado de Ganoderma Lucidum. 30gr.",
     precio: "$24.000",
-    id: "#04"
-  }, 
+    id: "004"
+  },
 ];
 
-// Contendor donde se insertarán las cards
+
+// Selectores en el DOM
+
+// Selección de elementos del MENÚ HAMBURGUESA
+const hamburgerBtn = document.querySelector('#hamburger-btn');
+const navMenu = document.querySelector('#nav-menu');
+
+// Selección del contenedor de las cards
 const cardsContainer = document.querySelector(".cards-container");
+
+
+
+// ───────────────────────────────────────────────────────────
+// MENÚ HAMBURGUESA
+// ───────────────────────────────────────────────────────────
+
+
+// Alternar estado del menú
+const toggleNavbar = () => {
+  navMenu.classList.toggle('active'); //crea la clase 'active' y la mete en un toggle (booleano)
+};
+
+// Cerrarse si clickeas afuera
+const clickAfuera = event => {
+  if (!event.target.closest('#nav-menu, #hamburger-btn')) {
+    navMenu.classList.remove('active');
+  }
+};
+
 
 // ───────────────────────────────────────────────────────────
 // CARRITO DE COMPRAS
 // ───────────────────────────────────────────────────────────
 
-// Array para el carrito y función para agregar productos
-let carrito = [];
+// Recuperá el carrito de sessionStorage o creá uno vacío:
+let carrito = JSON.parse(sessionStorage.getItem('carrito')) || [];
 
-function agregarProductoAlCarrito(idProducto) {
-  const productoEnCarrito = carrito.find(item => item.id === idProducto);
-  if (productoEnCarrito) {
-    productoEnCarrito.cantidad++;
-  
-  } else {
-    const productoOriginal = productos.find(producto => producto.id === idProducto);
-    carrito.push({ ...productoOriginal, cantidad: 1 });
-  }
-  actualizarCarritoHTML();
+// Siempre que se modifique el carrito, guardá los cambios en sessionStorage:
+function guardarCarrito() {
+  sessionStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-// Función de ejemplo para refrescar el HTML del carrito (implementa según tu UI)
+// Función para actualizar el badge del carrito en el DOM
 function actualizarCarritoHTML() {
-  console.log('Carrito actual:', carrito);
-  
   //Calcular el total de productos en el carrito
   let cantidadTotal = 0;
-  carrito.forEach(item => {cantidadTotal += item.cantidad;});
+  carrito.forEach(item => { cantidadTotal += item.cantidad; });
 
   //Actualizar el contador del ícono
   const contador = document.getElementById('contador-carrito');
@@ -109,6 +100,23 @@ function actualizarCarritoHTML() {
     contador.style.display = 'none';
   }
 }
+
+// Función para agregar un producto al carrito
+// Recibe el id del producto y lo agrega al carrito o incrementa la cantidad si ya existe
+function agregarProductoAlCarrito(idProducto) {
+  const productoEnCarrito = carrito.find(item => item.id === idProducto);
+  if (productoEnCarrito) {
+    productoEnCarrito.cantidad++;
+
+  } else {
+    const productoOriginal = productos.find(producto => producto.id === idProducto);
+    carrito.push({ ...productoOriginal, cantidad: 1 });
+  }
+
+  guardarCarrito(); // Guardar el carrito actualizado en sessionStorage
+  actualizarCarritoHTML();
+}
+
 
 // ───────────────────────────────────────────────────────────
 // CREAR LAS CARD DE PRODUCTOS
@@ -153,28 +161,46 @@ function crearCard({ imgSrc, imgAlt, titulo, descripcion, precio, id }) {
   //       <button>Comprar</button>
   const comprar = document.createElement("button");
   comprar.textContent = "Comprar";
-
-  // Agregar data-id al botón
-  comprar.dataset.id = id;
-
-  // Listener para agregar al carrito usando el data-id
-  comprar.addEventListener("click", e => {
+  comprar.dataset.id = id; // Agregar data-id al botón  
+  comprar.addEventListener("click", e => { // Listener para agregar al carrito usando el data-id
     const productoId = e.target.dataset.id;
     console.log("Producto agregado al carrito:", productoId);
     agregarProductoAlCarrito(productoId);
   });
+  precioBtn.appendChild(comprar);// indica que el botón de compra es un hijo de precio-btn
 
-  precioBtn.appendChild(comprar);
   texto.appendChild(precioBtn); // indica que el precio y botón de compra son hijos de card-text (texto)
   card.appendChild(texto); // indica que card-text es un hijo de la card
 
   return card; // devuelve la card completa
 }
 
-// Recorremos el array y agregamos cada card al DOM
-productos.forEach(producto => {
-  const cardElem = crearCard(producto);// crea una card para cada producto (con cada atributo del objeto{})
-  cardsContainer.appendChild(cardElem);
+
+// ───────────────────────────────────────────────────────────
+// INICIALIZACIÓN AL CARGAR LA PÁGINA
+// ───────────────────────────────────────────────────────────
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Actualizar el carrito en el DOM al cargar la página
+  actualizarCarritoHTML();
+
+  // Generar las cards de productos y agregarlas al contenedor en caso de que exista
+  if (cardsContainer) {
+    productos.forEach(producto => {
+      const cardElem = crearCard(producto);// crea una card para cada producto (con cada atributo del objeto{})
+      cardsContainer.appendChild(cardElem); // agrega la card al contenedor de cards
+    });
+  }
+
+  // Listeners del menú hamburguesa
+  if (hamburgerBtn && navMenu) {
+    hamburgerBtn.addEventListener('click', toggleNavbar);
+    document.addEventListener('click', clickAfuera);
+  }
 });
+
+
 
 
