@@ -79,7 +79,7 @@ h2 {
 }
 
 /* Boton General */
-.btn-general {
+.btn-primary {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,7 +94,7 @@ h2 {
     transition: all 0.3s ease;
 }
 
-.btn-general:hover {
+.btn-primary:hover {
     background-color: var(--accent-color);
     color: var(--background-color);
 }
@@ -277,7 +277,7 @@ nav ul {
     width: 50%;
 }
 
-.precio-btn button {
+.btn-secondary {
     text-align: center;
     width: 50%;
     padding: 0.5rem 1rem;
@@ -288,9 +288,10 @@ nav ul {
     box-shadow: 1px 2px 5px 0px var(--background-color);
 }
 
-.precio-btn button:hover {
+.btn-secondary:hover {
     background-color: var(--hover-primary-color);
     color: var(--accent-color);
+    cursor: pointer;
 }
 
 
@@ -685,4 +686,50 @@ footer {
     footer p {
         text-align: center;
     }
+}
+
+
+
+
+/* Estilos para la página del carrito */
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: .5rem;
+}
+.cart-item__img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 1rem;
+}
+.cart-item__info h4 {
+  margin: 0 0 .25rem;
+}
+.cart-item__info p {
+  margin: .25rem 0;
+}
+.cart-item__remove {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #c00;
+}
+#cart-summary {
+  margin-top: 1rem;
+  text-align: right;
+}
+#cart-summary p {
+  font-weight: bold;
+  font-size: 1.2rem;
 }

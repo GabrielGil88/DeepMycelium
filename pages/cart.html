@@ -31,24 +31,33 @@
 
             <div class="nav-container" id="nav-menu">
                 <ul class="navbar-item">
-                    <li><a href="/pages/tienda.html">Tienda</a></li>
+                    <li><a href="/pages/shop.html">Tienda</a></li>
                     <li><a href="#top">Información</a></li>
                     <li><a href="/index.html#quienes-somos">¿Quienes somos?</a></li>
                     <li><a href="/index.html#contacto">Contacto</a></li>
                 </ul>
                 <div class="navbar-item">
-                    <a href="#top"><i class="fa-solid fa-cart-shopping nav-icon"></i></a>
-                    <span id="contador-carrito" class="contadorCarrito" >0</span>
+                    <a href="/pages/cart.html"><i class="fa-solid fa-cart-shopping nav-icon"></i></a>
+                    <span id="contador-carrito" class="contadorCarrito">0</span>
                 </div>
             </div>
         </nav>
     </header>
 
     <main>
-        <div class="container">
+        <section class="container" id="cart-container">
             <h1 class="titulo">PAGINA EN CONSTRUCCIÓN</h1>
-            <p>INFORMACIÓN INFORMACIÓN INFORMACIÓN</p>
-        </div>
+            <h3>Vista previa de la orden</h3>
+            <p>¡su carrito está vacío!</p>
+            <ul id="cart-items">
+                <!-- Los items del carrito se agregarán aquí dinámicamente -->
+            </ul>
+
+            <div id="cart-summary">
+                <p>Total: $<span id="cart-total">0.00</span></p>
+                <button class="btn-primary" id="checkout-button">Finalizar compra</button>
+            </div>
+        </section>
     </main>
 
     <footer>

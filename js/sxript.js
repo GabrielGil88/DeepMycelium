@@ -229,3 +229,80 @@ function eliminarProductoDelCarrito(idProducto) {
 // Inicializar la aplicación
 agregarProductos();
 actualizarCarritoHTML(); // Llamar al inicio para mostrar el carrito vacío si no hay productos
+
+
+
+
+
+
+
+
+
+// ───────────────────────────────────────────────────────────
+// RENDERIZAR CARRITO EN HTML
+// ───────────────────────────────────────────────────────────
+function renderizarCarrito() {
+  const lista = document.getElementById('cart-items');
+  lista.innerHTML = ''; // lo limpiamos
+
+  // Si está vacío mostramos mensaje
+  if (carrito.length === 0) {
+    lista.innerHTML = '<p>¡Tu carrito está vacío!</p>';
+    document.getElementById('cart-summary').style.display = 'none';
+    return;
+  }
+  document.getElementById('cart-summary').style.display = 'block';
+
+  carrito.forEach(item => {
+    const li = document.createElement('li');
+    li.classList.add('cart-item');
+
+    // Calculamos subtotal (quitamos el signo y puntos)
+    const precioNum = Number(item.precio.replace(/[$.]/g, ''));
+    const subtotal = (precioNum * item.cantidad) / 1000; // asumiendo que los miles vienen con punto
+
+    li.innerHTML = `
+      <img src="${item.imgSrc}" alt="${item.imgAlt}" class="cart-item__img">
+      <div class="cart-item__info">
+        <h4>${item.titulo}</h4>
+        <p>Cantidad: ${item.cantidad}</p>
+        <p>Subtotal: $${(subtotal).toLocaleString('de')}</p>
+      </div>
+      <button class="cart-item__remove" data-id="${item.id}">&times;</button>
+    `;
+
+    // evento para eliminar
+    li.querySelector('.cart-item__remove').addEventListener('click', e => {
+      const id = e.target.dataset.id;
+      carrito = carrito.filter(prod => prod.id !== id);
+      guardarCarrito();
+      actualizarCarritoHTML();
+      renderizarCarrito();
+    });
+
+    lista.appendChild(li);
+  });
+}
+
+// Modifica tu función actualizarCarritoHTML para que también renderice
+function actualizarCarritoHTML() {
+  // ... tu código de contador
+
+  // Renderizamos listado y total
+  renderizarCarrito();
+
+  // Actualizamos total acumulado
+  const totalElem = document.getElementById('cart-total');
+  const total = carrito.reduce((acc, item) => {
+    const precioNum = Number(item.precio.replace(/[$.]/g, ''));
+    return acc + (precioNum * item.cantidad);
+  }, 0);
+  // Dividimos entre 1000 para ajustar miles si usas puntos: ojo con tu formato
+  totalElem.textContent = (total / 1000).toLocaleString('de');
+}
+
+// Al cargar la página, además de actualizar el contador, imprime el carrito
+document.addEventListener('DOMContentLoaded', () => {
+  actualizarCarritoHTML();
+  // ...
+});

@@ -5,8 +5,8 @@ console.log("El script está conectado correctamente");
 // DATOS Y SELECTORES
 // ───────────────────────────────────────────────────────────
 
-// Definir los productos en un array
-const productos = [
+// Definir los Productos Destacados en un array
+const productosDestacados = [
   {
     imgSrc: "imagenes/img_extractoReishi.jpg",
     imgAlt: "Extracto de Reishi",
@@ -75,12 +75,12 @@ const clickAfuera = event => {
 // CARRITO DE COMPRAS
 // ───────────────────────────────────────────────────────────
 
-// Recuperá el carrito de sessionStorage o creá uno vacío:
-let carrito = JSON.parse(sessionStorage.getItem('carrito')) || [];
+// Recuperá el carrito de localStorage o creá uno vacío:
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-// Siempre que se modifique el carrito, guardá los cambios en sessionStorage:
+// Siempre que se modifique el carrito, guardá los cambios en localStorage:
 function guardarCarrito() {
-  sessionStorage.setItem('carrito', JSON.stringify(carrito));
+  localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 // Función para actualizar el badge del carrito en el DOM
@@ -92,7 +92,7 @@ function actualizarCarritoHTML() {
   //Actualizar el contador del ícono
   const contador = document.getElementById('contador-carrito');
   if (!contador) return;
-  
+
   contador.textContent = cantidadTotal;
 
   //Mostrar u ocultar el contador según el total
@@ -111,11 +111,15 @@ function agregarProductoAlCarrito(idProducto) {
     productoEnCarrito.cantidad++;
 
   } else {
-    const productoOriginal = productos.find(producto => producto.id === idProducto);
-    carrito.push({ ...productoOriginal, cantidad: 1 });
+    const productoOriginal = productosDestacados.find(producto => producto.id === idProducto);
+    if (productoOriginal) {
+      carrito.push({ ...productoOriginal, cantidad: 1 });
+    } else {
+      console.error("Producto no encontrado con ID:", idProducto);
+    }
   }
 
-  guardarCarrito(); // Guardar el carrito actualizado en sessionStorage
+  guardarCarrito(); // Guardar el carrito actualizado en localStorage
   actualizarCarritoHTML();
 }
 
@@ -162,6 +166,7 @@ function crearCard({ imgSrc, imgAlt, titulo, descripcion, precio, id }) {
 
   //       <button>Comprar</button>
   const comprar = document.createElement("button");
+  comprar.classList.add("btn-secondary"); // Agregar clase para estilos
   comprar.textContent = "Comprar";
   comprar.dataset.id = id; // Agregar data-id al botón  
   comprar.addEventListener("click", e => { // Listener para agregar al carrito usando el data-id
@@ -190,10 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Generar las cards de productos y agregarlas al contenedor en caso de que exista
   if (cardsContainer) {
-    productos.forEach(producto => {
+    productosDestacados.forEach(producto => {
       const cardElem = crearCard(producto);// crea una card para cada producto (con cada atributo del objeto{})
       cardsContainer.appendChild(cardElem); // agrega la card al contenedor de cards
     });
+
   }
 
   // Listeners del menú hamburguesa
@@ -202,7 +208,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', clickAfuera);
   }
 });
-
-
 
 
