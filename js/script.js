@@ -12,7 +12,7 @@ const productosDestacados = [
     imgAlt: "Extracto de Reishi",
     titulo: "Extracto de hongo Reishi",
     descripcion: "Tintura madre de Ganoderma Lucidum 1:1. 60ml.",
-    precio: "$20.000",
+    precio: 20000,
     id: "001"
   },
   {
@@ -20,7 +20,7 @@ const productosDestacados = [
     imgAlt: "Capsulas de Cordyceps",
     titulo: "Capsulas de hongo Cordyceps",
     descripcion: "60 capsulas de 700mg de Cordyceps Militaris.",
-    precio: "$28.700",
+    precio: 28700,
     id: "002"
   },
   {
@@ -28,7 +28,7 @@ const productosDestacados = [
     imgAlt: "Extracto de Melena de león",
     titulo: "Extracto de hongo Melena de León",
     descripcion: "Tintura madre de Hericium Erinaceus 1:1. 60ml.",
-    precio: "$21.500",
+    precio: 21500,
     id: "003"
   },
   {
@@ -36,7 +36,7 @@ const productosDestacados = [
     imgAlt: "Polvo de Reishi",
     titulo: "Polvo de hongo Reishi",
     descripcion: "Molido de hongo deshidratado de Ganoderma Lucidum. 30gr.",
-    precio: "$24.000",
+    precio: 24000,
     id: "004"
   },
 ];
@@ -161,7 +161,7 @@ function crearCard({ imgSrc, imgAlt, titulo, descripcion, precio, id }) {
 
   //       <p>$...</p>
   const pPrecio = document.createElement("p");
-  pPrecio.textContent = precio;
+  pPrecio.textContent = `$${precio.toLocaleString('es-AR')}`; // Formatear el precio con separador de miles
   precioBtn.appendChild(pPrecio);
 
   //       <button>Comprar</button>

@@ -20,8 +20,8 @@
     --light-grey-color: #CCCCCC;
     --mid-grey-color: #A9A9A9;
     --darker-grey-color: #696969;
-    --hover-primary-color: #265529;
-    --hover-secondary-color: #4E342E;
+    --hover-secondary-color: #265529;
+
 
     --text-size-xs: 0.8rem;
     --text-size-s: 1rem;
@@ -92,11 +92,56 @@ h2 {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    gap: 0.5rem;
 }
 
 .btn-primary:hover {
     background-color: var(--accent-color);
     color: var(--background-color);
+}
+
+/* Boton secundario */
+
+.btn-secondary {
+    text-align: center;
+    width: 50%;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-btn-global);
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    box-shadow: 1px 2px 5px 0px var(--background-color);
+    cursor: pointer;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background-color: var(--hover-secondary-color);
+    color: var(--accent-color);
+}
+
+/* Boton terciario */
+
+.btn-tertiary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-btn-global);
+    background-color: transparent;
+    border: 2px solid var(--light-grey-color);
+    color: var(--light-grey-color);
+    font-size: var(--text-size-s);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 0.5rem;
+}
+
+.btn-tertiary:hover {
+    background-color: var(--light-grey-color);
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
 }
 
 /* NAVBAR */
@@ -148,20 +193,20 @@ nav ul {
 /* Contador del carrito */
 
 .contadorCarrito {
-  position: absolute;
-  top: 4px;
-  right: 18px;
-  background-color: var(--accent-color);
-  color: var(--background-color);
-  font-weight: bold;
-  border-radius: 100%;
-  padding: 2px 8px;
-  font-size: 14px;
+    position: absolute;
+    top: 4px;
+    right: 18px;
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    font-weight: bold;
+    border-radius: 100%;
+    padding: 2px 8px;
+    font-size: 14px;
 }
 
 #carrito-icono {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 /* Menu Hamburguesa */
@@ -277,22 +322,7 @@ nav ul {
     width: 50%;
 }
 
-.btn-secondary {
-    text-align: center;
-    width: 50%;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-btn-global);
-    border: none;
-    background-color: var(--primary-color);
-    color: var(--white-color);
-    box-shadow: 1px 2px 5px 0px var(--background-color);
-}
 
-.btn-secondary:hover {
-    background-color: var(--hover-primary-color);
-    color: var(--accent-color);
-    cursor: pointer;
-}
 
 
 /* SECCION: CATEGORIAS */
@@ -369,7 +399,7 @@ nav ul {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 10vh 10vh 5vh 10vh; 
+    padding: 10vh 10vh 5vh 10vh;
     height: 100%;
     font-family: "Cormorant Garamond", serif;
     font-weight: 700;
@@ -693,43 +723,39 @@ footer {
 
 /* Estilos para la página del carrito */
 
-#cart-items {
-  list-style: none;
-  padding: 0;
+.cart-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20vh;
 }
-.cart-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: .5rem;
+
+.cart-area h3 {
+    width: 100%;
+    font-size: var(--text-size-l);
+    text-align: left;
+    margin-bottom: 1rem;
 }
-.cart-item__img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-right: 1rem;
+
+.cart-container {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
 }
-.cart-item__info h4 {
-  margin: 0 0 .25rem;
-}
-.cart-item__info p {
-  margin: .25rem 0;
-}
-.cart-item__remove {
-  margin-left: auto;
-  background: transparent;
-  border: none;
-  font-size: 1.25rem;
-  cursor: pointer;
-  color: #c00;
-}
+
+
 #cart-summary {
-  margin-top: 1rem;
-  text-align: right;
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 1rem 2rem 1rem;
+    gap: 2rem;
+}   
+
+.cart-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
-#cart-summary p {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
+
