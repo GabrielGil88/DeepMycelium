@@ -76,7 +76,7 @@ const clickAfuera = event => {
 // ───────────────────────────────────────────────────────────
 
 // Recuperá el carrito de localStorage o creá uno vacío:
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+let carrito  = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Siempre que se modifique el carrito, guardá los cambios en localStorage:
 function guardarCarrito() {
@@ -183,6 +183,46 @@ function crearCard({ imgSrc, imgAlt, titulo, descripcion, precio, id }) {
 }
 
 
+function renderizarCarrito() {
+  const contenedorCarrito = document.getElementById('cart-items');
+  contenedorCarrito.innerHTML = ''; // Limpiar
+
+  carrito.forEach(producto => {
+    contenedorCarrito.innerHTML += `
+      <li class="cart-card">
+        <button class="btn-tertiary erase-item" data-id="${producto.id}">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+        <img src="${producto.imgSrc}" alt="${producto.imgAlt}">
+        <div class="item-details">
+          <div class="item-row">
+            <h4>${producto.titulo}</h4>
+            <div class="item-quantity">
+              <button class="btn-secondary btn-restar" data-id="${producto.id}">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <input type="number" min="1" value="${producto.cantidad}" class="input-cantidad" data-id="${producto.id}">
+              <button class="btn-secondary btn-sumar" data-id="${producto.id}">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="item-row">
+            <p>${producto.descripcion}</p>
+            <span class="item-price">$${(producto.precio * producto.cantidad).toLocaleString('es-AR')}</span>
+          </div>
+        </div>
+      </li>
+    `;
+  });
+
+  actualizarResumen();
+  actualizarCarritoHTML();
+  asignarListeners();
+}
+
+
+
 // ───────────────────────────────────────────────────────────
 // INICIALIZACIÓN AL CARGAR LA PÁGINA
 // ───────────────────────────────────────────────────────────
@@ -207,6 +247,71 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburgerBtn.addEventListener('click', toggleNavbar);
     document.addEventListener('click', clickAfuera);
   }
+
+  renderizarCarrito(); // 👈 importante
+  actualizarCarritoHTML();
 });
 
 
+function asignarListeners() {
+  document.querySelectorAll('.erase-item').forEach(btn =>
+    btn.addEventListener('click', () => {
+      eliminarDelCarrito(btn.dataset.id);
+    })
+  );
+
+  document.querySelectorAll('.btn-sumar').forEach(btn =>
+    btn.addEventListener('click', () => {
+      modificarCantidad(btn.dataset.id, 1);
+    })
+  );
+
+  document.querySelectorAll('.btn-restar').forEach(btn =>
+    btn.addEventListener('click', () => {
+      modificarCantidad(btn.dataset.id, -1);
+    })
+  );
+
+  document.querySelectorAll('.input-cantidad').forEach(input =>
+    input.addEventListener('change', () => {
+      const nuevaCantidad = parseInt(input.value);
+      if (nuevaCantidad >= 1) {
+        cambiarCantidadManual(input.dataset.id, nuevaCantidad);
+      }
+    })
+  );
+}
+
+
+function eliminarDelCarrito(idProducto) {
+  carrito = carrito.filter(item => item.id !== idProducto);
+  guardarCarrito();
+  renderizarCarrito();
+}
+
+function modificarCantidad(idProducto, cambio) {
+  const producto = carrito.find(item => item.id === idProducto);
+  if (producto) {
+    producto.cantidad += cambio;
+    if (producto.cantidad < 1) producto.cantidad = 1;
+    guardarCarrito();
+    renderizarCarrito();
+  }
+}
+
+function cambiarCantidadManual(idProducto, nuevaCantidad) {
+  const producto = carrito.find(item => item.id === idProducto);
+  if (producto) {
+    producto.cantidad = nuevaCantidad;
+    guardarCarrito();
+    renderizarCarrito();
+  }
+}
+
+function actualizarResumen() {
+  const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+  const resumen = document.querySelector('#cart-summary h3');
+  if (resumen) {
+    resumen.textContent = `Total: $${total.toLocaleString('es-AR')}`;
+  }
+}

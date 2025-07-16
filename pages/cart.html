@@ -50,15 +50,34 @@
             <h3>Vista previa de la orden</h3>
             <div class="cart-container">
                 <ul id="cart-items">
-                    <p>items</p>
-                    
+                    <li class="cart-card">
+                        <button id="erase-item"></i></i> <i class="fa fa-trash"
+                                aria-hidden="true"></i></button>
+                        <img src="../imagenes/img_extractoMelena.jpg" alt="Imagen del producto">
+                        <div class="item-details">
+                            <div class="item-row">
+                                <h4>Nombre del Producto</h4>
+                                <div class="item-quantity">
+                                    <button class="btn-secondary"><i class="fa-solid fa-minus"></i></button>
+                                    <input type="number" id="quantity" name="quantity" min="1" value="1">
+                                    <button class="btn-secondary"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="item-row">
+                                <p>Descripción breve del producto.</p>
+                                <span class="item-price">$000</span>
+                            </div>
+                        </div>
+                    </li>
                     <!-- Los items del carrito se agregarán aquí dinámicamente -->
                 </ul>
                 <div id="cart-summary">
                     <h3>Total: $000</h3>
                     <div class="cart-buttons">
-                    <button class="btn-tertiary" id="checkout-button"></i></i>Vaciar <i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <button class="btn-primary" id="checkout-button">Finalizar compra<i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                        <button class="btn-tertiary" id="checkout-button"></i></i><i class="fa fa-trash"
+                                aria-hidden="true"></i></button>
+                        <button class="btn-primary" id="checkout-button">Finalizar compra<i class="fa fa-chevron-right"
+                                aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
