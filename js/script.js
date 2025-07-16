@@ -5,10 +5,13 @@ console.log("El script está conectado correctamente");
 // DATOS Y SELECTORES
 // ───────────────────────────────────────────────────────────
 
+//  Detectar desde dónde se está ejecutando el HTML si el index u otra pagina
+const basePath = window.location.pathname.includes("/pages/") ? "../imagenes/" : "imagenes/";
+
 // Definir los Productos Destacados en un array
 const productosDestacados = [
   {
-    imgSrc: "imagenes/img_extractoReishi.jpg",
+    imgSrc: `${basePath}img_extractoReishi.jpg`,
     imgAlt: "Extracto de Reishi",
     titulo: "Extracto de hongo Reishi",
     descripcion: "Tintura madre de Ganoderma Lucidum 1:1. 60ml.",
@@ -16,7 +19,7 @@ const productosDestacados = [
     id: "001"
   },
   {
-    imgSrc: "imagenes/img_capsulasCordycep.jpg",
+    imgSrc: `${basePath}img_capsulasCordycep.jpg`,
     imgAlt: "Capsulas de Cordyceps",
     titulo: "Capsulas de hongo Cordyceps",
     descripcion: "60 capsulas de 700mg de Cordyceps Militaris.",
@@ -24,7 +27,7 @@ const productosDestacados = [
     id: "002"
   },
   {
-    imgSrc: "imagenes/img_extractoMelena.jpg",
+    imgSrc: `${basePath}img_extractoMelena.jpg`,
     imgAlt: "Extracto de Melena de león",
     titulo: "Extracto de hongo Melena de León",
     descripcion: "Tintura madre de Hericium Erinaceus 1:1. 60ml.",
@@ -32,7 +35,7 @@ const productosDestacados = [
     id: "003"
   },
   {
-    imgSrc: "imagenes/img_polvoReishi.jpg",
+    imgSrc: `${basePath}img_polvoReishi.jpg`,
     imgAlt: "Polvo de Reishi",
     titulo: "Polvo de hongo Reishi",
     descripcion: "Molido de hongo deshidratado de Ganoderma Lucidum. 30gr.",
