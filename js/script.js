@@ -284,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const cardElem = crearCard(producto);// crea una card para cada producto (con cada atributo del objeto{})
       cardsContainer.appendChild(cardElem); // agrega la card al contenedor de cards
     });
-
   }
 
   // Listeners del menú hamburguesa
@@ -350,4 +349,5 @@ function cambiarCantidadManual(idProducto, nuevaCantidad) {
     actualizarCarritoHTML();
   }
 }
+
 
