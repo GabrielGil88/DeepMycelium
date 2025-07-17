@@ -5,14 +5,16 @@ console.log("El script está conectado correctamente");
 // DATOS Y SELECTORES
 // ───────────────────────────────────────────────────────────
 
-//  Detectar desde dónde se está ejecutando el HTML si el index u otra pagina
-const basePath = window.location.pathname.includes("/pages/") ? "../imagenes/" : "imagenes/";
-console.log("Ruta base de imágenes:", basePath);
+  // Definir la ruta base para las imágenes
+  const basePath = window.location.pathname.includes('/pages/') 
+    ? '../imagenes/' 
+    : 'imagenes/';
+
 
 // Definir los Productos Destacados en un array
 const productosDestacados = [
   {
-    imgSrc: `${basePath}img_extractoReishi.jpg`,
+    imgSrc: "img_extractoReishi.jpg",
     imgAlt: "Extracto de Reishi",
     titulo: "Extracto de hongo Reishi",
     descripcion: "Tintura madre de Ganoderma Lucidum 1:1. 60ml.",
@@ -20,7 +22,7 @@ const productosDestacados = [
     id: "001"
   },
   {
-    imgSrc: `${basePath}img_capsulasCordycep.jpg`,
+    imgSrc: "img_capsulasCordycep.jpg",
     imgAlt: "Capsulas de Cordyceps",
     titulo: "Capsulas de hongo Cordyceps",
     descripcion: "60 capsulas de 700mg de Cordyceps Militaris.",
@@ -28,7 +30,7 @@ const productosDestacados = [
     id: "002"
   },
   {
-    imgSrc: `${basePath}img_extractoMelena.jpg`,
+    imgSrc: "img_extractoMelena.jpg",
     imgAlt: "Extracto de Melena de león",
     titulo: "Extracto de hongo Melena de León",
     descripcion: "Tintura madre de Hericium Erinaceus 1:1. 60ml.",
@@ -36,7 +38,7 @@ const productosDestacados = [
     id: "003"
   },
   {
-    imgSrc: `${basePath}img_polvoReishi.jpg`,
+    imgSrc: "img_polvoReishi.jpg",
     imgAlt: "Polvo de Reishi",
     titulo: "Polvo de hongo Reishi",
     descripcion: "Molido de hongo deshidratado de Ganoderma Lucidum. 30gr.",
@@ -80,7 +82,7 @@ const clickAfuera = event => {
 // ───────────────────────────────────────────────────────────
 
 // Recuperá el carrito de localStorage o creá uno vacío:
-let carrito  = JSON.parse(localStorage.getItem('carrito')) || [];
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Siempre que se modifique el carrito, guardá los cambios en localStorage:
 function guardarCarrito() {
@@ -113,17 +115,10 @@ function agregarProductoAlCarrito(idProducto) {
   const productoEnCarrito = carrito.find(item => item.id === idProducto);
   if (productoEnCarrito) {
     productoEnCarrito.cantidad++;
-
   } else {
-    const productoOriginal = productosDestacados.find(producto => producto.id === idProducto);
-    if (productoOriginal) {
-      carrito.push({ ...productoOriginal, cantidad: 1 });
-    } else {
-      console.error("Producto no encontrado con ID:", idProducto);
-    }
+    carrito.push({ id: idProducto, cantidad: 1 });
   }
-
-  guardarCarrito(); // Guardar el carrito actualizado en localStorage
+  guardarCarrito();
   actualizarCarritoHTML();
 }
 
@@ -141,7 +136,7 @@ function crearCard({ imgSrc, imgAlt, titulo, descripcion, precio, id }) {
 
   //   <img src="..." alt="...">
   const img = document.createElement("img");
-  img.setAttribute("src", imgSrc);
+  img.setAttribute("src", basePath + imgSrc);
   img.setAttribute("alt", imgAlt);
   card.appendChild(img);// indica que la imagen es un hijo de la card
 
@@ -187,44 +182,94 @@ function crearCard({ imgSrc, imgAlt, titulo, descripcion, precio, id }) {
 }
 
 
-function renderizarCarrito() {
-  const contenedorCarrito = document.getElementById('cart-items');
-  contenedorCarrito.innerHTML = ''; // Limpiar
+// —————————————————————————————————————————————————————
+// Función para actualizar el total y ocultar/marcar carrito vacío
+// —————————————————————————————————————————————————————
+function actualizarResumen() {
+  const resumen = document.querySelector('#cart-summary h3');
+  if (!resumen) return;
 
-  carrito.forEach(producto => {
-    contenedorCarrito.innerHTML += `
+  // Calcula siempre el total; si no hay productos, total = 0
+  const total = carrito.reduce((sum, item) => {
+    const prod = productosDestacados.find(p => p.id === item.id);
+    return prod ? sum + prod.precio * item.cantidad : sum;
+  }, 0);
+
+  // Solo actualiza el texto; el resto (mostrar/ocultar) ya lo hace renderizarCarrito()
+  resumen.textContent = `Total: $${total.toLocaleString('es-AR')}`;
+}
+
+// —————————————————————————————————————————————————————
+// Función para eliminar y refrescar badge
+// —————————————————————————————————————————————————————
+function eliminarDelCarrito(idProducto) {
+  carrito = carrito.filter(item => item.id !== idProducto);
+  guardarCarrito();
+  renderizarCarrito();
+  actualizarCarritoHTML();
+}
+
+// —————————————————————————————————————————————————————
+// Función simplificada de renderizado de carrito
+// —————————————————————————————————————————————————————
+function renderizarCarrito() {
+  const contenedor = document.getElementById('cart-items');
+  if (!contenedor) return;
+
+  // Limpiar contenedor
+  contenedor.innerHTML = '';
+
+  // Si está vacío, mostrar mensaje y salir
+  if (carrito.length === 0) {
+    contenedor.innerHTML = '<h2>Tu carrito está vacío.</h2>';
+    actualizarResumen();
+    return;
+  }
+
+// ③ Construir el HTML completo en una variable
+  let html = '';
+  // Renderizar cada ítem
+  carrito.forEach(item => {
+    const prod = productosDestacados.find(p => p.id === item.id);
+    if (!prod) return;
+    // Obtener nombre de archivo sin prefijo
+    const fileName = prod.imgSrc.replace(/^(\.\.\/)?imagenes\//, '');
+    html +=`
       <li class="cart-card">
-        <button class="btn-tertiary erase-item" data-id="${producto.id}">
+        <button class="btn-tertiary erase-item" data-id="${item.id}">
           <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
-        <img src="${producto.imgSrc}" alt="${producto.imgAlt}">
+        <img src="${basePath + fileName}" alt="${prod.imgAlt}">
         <div class="item-details">
           <div class="item-row">
-            <h4>${producto.titulo}</h4>
+            <h4>${prod.titulo}</h4>
             <div class="item-quantity">
-              <button class="btn-secondary btn-restar" data-id="${producto.id}">
+              <button class="btn-secondary btn-restar" data-id="${item.id}">
                 <i class="fa-solid fa-minus"></i>
               </button>
-              <input type="number" min="1" value="${producto.cantidad}" class="input-cantidad" data-id="${producto.id}">
-              <button class="btn-secondary btn-sumar" data-id="${producto.id}">
+              <input type="number" min="1" value="${item.cantidad}" class="input-cantidad" data-id="${item.id}">
+              <button class="btn-secondary btn-sumar" data-id="${item.id}">
                 <i class="fa-solid fa-plus"></i>
               </button>
             </div>
           </div>
           <div class="item-row">
-            <p>${producto.descripcion}</p>
-            <span class="item-price">$${(producto.precio * producto.cantidad).toLocaleString('es-AR')}</span>
+            <p>${prod.descripcion}</p>
+            <span class="item-price">$${(prod.precio * item.cantidad).toLocaleString('es-AR')}</span>
           </div>
         </div>
       </li>
     `;
   });
 
+  // ④ Asignar todo el HTML de una sola vez
+  contenedor.innerHTML = html;
+
+  // ⑤ Actualizar resumen, badge y listeners solo UNA vez
   actualizarResumen();
   actualizarCarritoHTML();
   asignarListeners();
 }
-
 
 
 // ───────────────────────────────────────────────────────────
@@ -233,10 +278,6 @@ function renderizarCarrito() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Actualizar el carrito en el DOM al cargar la página
-  actualizarCarritoHTML();
-
   // Generar las cards de productos y agregarlas al contenedor en caso de que exista
   if (cardsContainer) {
     productosDestacados.forEach(producto => {
@@ -252,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', clickAfuera);
   }
 
-  renderizarCarrito(); // 👈 importante
+  renderizarCarrito();
   actualizarCarritoHTML();
 });
 
@@ -287,11 +328,7 @@ function asignarListeners() {
 }
 
 
-function eliminarDelCarrito(idProducto) {
-  carrito = carrito.filter(item => item.id !== idProducto);
-  guardarCarrito();
-  renderizarCarrito();
-}
+
 
 function modificarCantidad(idProducto, cambio) {
   const producto = carrito.find(item => item.id === idProducto);
@@ -300,6 +337,7 @@ function modificarCantidad(idProducto, cambio) {
     if (producto.cantidad < 1) producto.cantidad = 1;
     guardarCarrito();
     renderizarCarrito();
+    actualizarCarritoHTML();
   }
 }
 
@@ -309,13 +347,7 @@ function cambiarCantidadManual(idProducto, nuevaCantidad) {
     producto.cantidad = nuevaCantidad;
     guardarCarrito();
     renderizarCarrito();
+    actualizarCarritoHTML();
   }
 }
 
-function actualizarResumen() {
-  const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
-  const resumen = document.querySelector('#cart-summary h3');
-  if (resumen) {
-    resumen.textContent = `Total: $${total.toLocaleString('es-AR')}`;
-  }
-}
