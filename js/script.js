@@ -7,6 +7,7 @@ console.log("El script está conectado correctamente");
 
 //  Detectar desde dónde se está ejecutando el HTML si el index u otra pagina
 const basePath = window.location.pathname.includes("/pages/") ? "../imagenes/" : "imagenes/";
+console.log("Ruta base de imágenes:", basePath);
 
 // Definir los Productos Destacados en un array
 const productosDestacados = [
