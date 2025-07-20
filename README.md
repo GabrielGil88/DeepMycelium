@@ -26,7 +26,7 @@ Este sitio web fue diseñado para ofrecer una experiencia fluida e intuitiva al 
 ## 📁 Estructura del Proyecto
 
 ```bash
-mi-tienda-online/
+Deep-Mycelium/
 ├── index.html
 ├── css/
 │   └── styles.css
