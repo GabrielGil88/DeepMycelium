@@ -1,12 +1,18 @@
 import { productosDestacados, basePath } from './productos.js';
 import { contador } from './selectors.js';
+import { crearItemCarrito } from './cards.js';
 
+
+// Carrito actual (se recupera del localStorage o arranca vacío)
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
+// Guarda el estado actual del carrito en localStorage
 function guardarCarrito() {
   localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
+
+// Actualiza el contador del carrito en el badge
 function actualizarCarritoHTML() {  
   if (!contador) return;
 
@@ -27,6 +33,7 @@ function agregarProductoAlCarrito(idProducto) {
   renderizarCarrito();
 }
 
+// Calcula y muestra el total en $ del carrito
 function actualizarResumen() {
   const resumen = document.querySelector('#cart-summary h3');
   if (!resumen) return;
@@ -41,7 +48,7 @@ function actualizarResumen() {
   resumen.textContent = `Total: $${total.toLocaleString('es-AR')}`;
 }
 
-// ① Renderizar el carrito
+// Dibuja visualmente los productos del carrito (crearItemCarrito)
 function renderizarCarrito() {
   const contenedor = document.getElementById('cart-items');
   if (!contenedor) return;
@@ -56,70 +63,42 @@ function renderizarCarrito() {
     return;
   }
 
-// ③ Construir el HTML completo en una variable
-  let html = '';
-  // Renderizar cada ítem
+  // Renderizar cada ítem en el contenedor
   carrito.forEach(item => {
     const prod = productosDestacados.find(p => p.id === item.id);
     if (!prod) return;
-    // Obtener nombre de archivo sin prefijo
-    const fileName = prod.imgSrc.replace(/^(\.\.\/)?imagenes\//, '');
-    html +=`
-      <li class="cart-card">
-        <button class="btn-tertiary erase-item" data-id="${item.id}">
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </button>
-        <img src="${basePath + fileName}" alt="${prod.imgAlt}">
-        <div class="item-details">
-          <div class="item-row">
-            <h4>${prod.titulo}</h4>
-            <div class="item-quantity">
-              <button class="btn-secondary btn-restar" data-id="${item.id}">
-                <i class="fa-solid fa-minus"></i>
-              </button>
-              <input type="number" min="1" value="${item.cantidad}" class="input-cantidad" data-id="${item.id}">
-              <button class="btn-secondary btn-sumar" data-id="${item.id}">
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="item-row">
-            <p>${prod.descripcion}</p>
-            <span class="item-price">$${(prod.precio * item.cantidad).toLocaleString('es-AR')}</span>
-          </div>
-        </div>
-      </li>
-    `;
+    const cardElem = crearItemCarrito(prod, item);
+    contenedor.appendChild(cardElem);
   });
 
-  // ④ Asignar todo el HTML de una sola vez
-  contenedor.innerHTML = html;
-
-  // ⑤ Actualizar resumen, badge y listeners solo UNA vez
-  actualizarResumen();
-  actualizarCarritoHTML();
-  asignarListeners();
+  guardarCarrito(); // Guarda el carrito actualizado en localStorage
+  actualizarResumen(); // Actualiza el total $ del carrito
+  actualizarCarritoHTML(); // Actualiza el contador del carrito
+  asignarListeners(); // Asigna los listeners a los botones de eliminar y modificar cantidad
 }
 
+
+// Asignar listeners a los botones de eliminar y modificar cantidad
 function asignarListeners() {
+  // Eliminar del carrito
   document.querySelectorAll('.erase-item').forEach(btn =>
     btn.addEventListener('click', () => {
       eliminarDelCarrito(btn.dataset.id);
     })
   );
-
+  // Modificar cantidad (suma)
   document.querySelectorAll('.btn-sumar').forEach(btn =>
     btn.addEventListener('click', () => {
       modificarCantidad(btn.dataset.id, 1);
     })
   );
-
+  // Modificar cantidad (resta)
   document.querySelectorAll('.btn-restar').forEach(btn =>
     btn.addEventListener('click', () => {
       modificarCantidad(btn.dataset.id, -1);
     })
   );
-
+ // Cambiar cantidad (manual)
   document.querySelectorAll('.input-cantidad').forEach(input =>
     input.addEventListener('change', () => {
       const nuevaCantidad = parseInt(input.value);
@@ -128,45 +107,61 @@ function asignarListeners() {
       }
     })
   );
+  // Vaciar carrito
+  document.getElementById("bin-button").addEventListener('click', vaciarCarrito);
+
+  // Finalizar compra
+  document.getElementById("checkout-button").addEventListener('click', finalizarCompra);
 }
 
-
+// Filtra el carrito para eliminar el producto con el id especificado
 function eliminarDelCarrito(idProducto) {
   carrito = carrito.filter(item => item.id !== idProducto);
-  guardarCarrito();
+  guardarCarrito();            
   renderizarCarrito();
-  actualizarCarritoHTML();
+  actualizarCarritoHTML();  
 }
 
+// Sumar o restar cantidad de un producto
 function modificarCantidad(idProducto, cambio) {
   const item = carrito.find(i => i.id === idProducto);
   if (item) {
     item.cantidad = Math.max(1, item.cantidad + cambio);
-    guardarCarrito();
     renderizarCarrito();
-    actualizarCarritoHTML();
   }
 }
-
+// Cambia la cantidad manualmente desde el input
 function cambiarCantidadManual(idProducto, nuevaCantidad) {
   const item = carrito.find(i => i.id === idProducto);
   if (item) {
     item.cantidad = nuevaCantidad;
-    guardarCarrito();
     renderizarCarrito();
-    actualizarCarritoHTML();
   }
 }
 
+// Vacia el carrito y actualiza el HTML
+function vaciarCarrito() {
+  carrito = [];
+  guardarCarrito();            
+  renderizarCarrito();
+  actualizarCarritoHTML();  
+}
+
+// Finalizar la compra (aquí podrías integrar con un backend o API)
+function finalizarCompra() {
+  alert('¡Gracias por tu compra! Pronto recibirás la confirmación por email. 🛒✨');
+
+  carrito = [];
+  guardarCarrito();
+  renderizarCarrito();
+  actualizarCarritoHTML();
+
+  // Redirigir a home después de la alerta
+  window.location.href = '/'; 
+}
+
 export {
-  carrito,
-  guardarCarrito,
-  actualizarCarritoHTML,
-  actualizarResumen,
   agregarProductoAlCarrito,
-  renderizarCarrito,  
-  asignarListeners,
-  eliminarDelCarrito,
-  modificarCantidad,
-  cambiarCantidadManual
+  renderizarCarrito,
+  actualizarCarritoHTML
 };
