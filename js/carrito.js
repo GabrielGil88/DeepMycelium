@@ -157,7 +157,7 @@ function finalizarCompra() {
   actualizarCarritoHTML();
 
   // Redirigir a home después de la alerta
-  window.location.href = '/'; 
+  window.location.href = 'https://gabrielgil88.github.io/DeepMycelium'; 
 }
 
 export {
