@@ -88,6 +88,6 @@ Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
 ## 🙋‍♂️ Autor
 
 Desarrollado por **Gabriel Gil**(https://github.com/GabrielGil88/)  
-💼 [LinkedIn](https://www.linkedin.com/in/gaboagil) | ✉️ [mailto:gaboagil.uxui@gmail.com]
+💼 [LinkedIn](https://www.linkedin.com/in/gaboagil) | ✉️ [Escribime](mailto:gaboagil.uxui@gmail.com)
 
 ---
