@@ -1,5 +1,5 @@
 
-# 🛍️ Mi Tienda Online
+# 🛍️ Tienda Online - Deep Mycelium
 
 ¡Bienvenido al repositorio *Deep Mycelium*!  
 Este proyecto fue desarrollado como práctica personal para afianzar conocimientos en desarrollo front-end en el marco del curso de TalentoTech, utilizando tecnologías como **HTML**, **CSS** y **JavaScript**. El objetivo es implementar un sistema de carrito funcional, aplicando diseño responsivo, manipulación del DOM, y almacenamiento con `localStorage`.
