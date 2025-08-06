@@ -205,14 +205,14 @@ nav ul {
 
 .contadorCarrito {
     position: absolute;
-    top: 4px;
-    right: 16px;
+    top: 0;
+    right: 0;
     background-color: var(--accent-color);
     color: var(--background-color);
     font-weight: bold;
     border-radius: 100%;
     padding: 2px 8px;
-    font-size: 14px;
+    font-size: 0.75rem;
 }
 
 #carrito-icono {
@@ -869,7 +869,7 @@ input[type="number"]::-webkit-outer-spin-button {
         height: auto;
     }
 
-    .nav-subcontainer{
+    .nav-subcontainer {
         flex-direction: row-reverse;
     }
 
@@ -923,6 +923,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 600px) {
+
     .bg-main-container {
         background-size: auto;
     }
